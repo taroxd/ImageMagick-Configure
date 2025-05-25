@@ -1,0 +1,26 @@
+on:
+  push:
+    branches:
+    - main
+
+name: main
+jobs:
+  build:
+    name: Build
+    runs-on: windows-2022
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ x86, x64, arm64 ]
+        configuration: [ Debug, Release ]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build configure
+      shell: cmd
+      run: |
+        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+        msbuild Configure.sln /m /t:Rebuild /p:Configuration=${{matrix.configuration}},Platform=${{matrix.platform}} 
