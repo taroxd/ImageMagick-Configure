@@ -1,0 +1,93 @@
+on:
+  workflow_dispatch:
+
+name: release
+jobs:
+  build:
+    name: Build
+    runs-on: windows-2022
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ x86, x64, arm64 ]
+        configuration: [ Debug, Release ]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build configure
+      shell: cmd
+      run: |
+        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+        msbuild Configure.sln /m /t:Rebuild /p:Configuration=${{ matrix.Configuration }},Platform=${{ matrix.platform }}
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: Configure.${{ matrix.Configuration }}.${{ matrix.platform }}
+        path: Artifacts/${{ matrix.Configuration }}/${{ matrix.platform}}/bin
+
+  release:
+    name: Release
+    runs-on: windows-2022
+    needs: build
+
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - uses: actions/download-artifact@v4
+      name: Download executables
+      with:
+        path: ${{ github.workspace }}/Artifacts
+        merge-multiple: true
+
+    - name: Install dotnet sign
+      shell: cmd
+      run: dotnet tool install --global sign --prerelease
+
+    - name: Azure CLI login with federated credential
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      
+    - name: Sign executables
+      run: sign code trusted-signing *.exe `
+        --trusted-signing-account ImageMagick `
+        --trusted-signing-certificate-profile ImageMagick `
+        --trusted-signing-endpoint https://eus.codesigning.azure.net `
+        --verbosity information
+      working-directory: ${{ github.workspace }}/Artifacts
+
+    - name: Set release number
+      shell: bash
+      run: echo "release=$(date +'%Y.%m.%d.%H%M')" >> $GITHUB_ENV
+
+    - name: Create and push tag
+      shell: bash
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git tag $release
+        git push origin $release
+
+    - name: Publish release
+      uses: softprops/action-gh-release@v2
+      with:
+        name: ${{ env.release }}
+        tag_name: ${{ env.release }}
+        files: |
+          ${{ github.workspace }}/Artifacts/Configure.Debug.x64.exe
+          ${{ github.workspace }}/Artifacts/Configure.Debug.arm64.exe
+          ${{ github.workspace }}/Artifacts/Configure.Debug.x86.exe
+          ${{ github.workspace }}/Artifacts/Configure.Release.x64.exe
+          ${{ github.workspace }}/Artifacts/Configure.Release.arm64.exe
+          ${{ github.workspace }}/Artifacts/Configure.Release.x86.exe
