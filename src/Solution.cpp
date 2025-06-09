@@ -202,6 +202,9 @@ void Solution::writeInstallerConfig(const VersionInfo &versionInfo) const
   wofstream
     outputStream;
 
+  if (!filesystem::exists(pathFromRoot(L"Installer")))
+    return;
+
   inputStream.open(pathFromRoot(L"Installer\\Inno\\config.isx.in"));
   if (!inputStream)
     throwException(L"Unable to open installer config input file");
