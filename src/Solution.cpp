@@ -59,7 +59,7 @@ void Solution::loadProjects()
 {
   loadProjectsFromFolder(L"Dependencies", L"Dependencies");
   loadProjectsFromFolder(L"OptionalDependencies", L"OptionalDependencies");
-  loadProjectsFromFolder(L"Projects", L"ImageMagick");
+  loadProjectsFromFolder(L"ProjectConfigs", L"ImageMagick");
 }
 
 void Solution::write(WaitDialog &waitDialog) const
@@ -266,7 +266,7 @@ void Solution::writeMagickBaseConfig() const
   wstring
     folderName;
 
-  configIn.open(pathFromRoot(L"Projects\\MagickCore\\magick-baseconfig.h.in"));
+  configIn.open(pathFromRoot(L"ProjectConfigs\\MagickCore\\magick-baseconfig.h.in"));
   if (!configIn)
     return;
 
@@ -402,7 +402,7 @@ void Solution::writeMakeFile() const
 
   lib.close();
 
-  zipIn=wifstream(pathFromRoot(L"Projects\\PerlMagick\\Zip.ps1"), std::ios::binary);
+  zipIn=wifstream(pathFromRoot(L"ProjectConfigs\\PerlMagick\\Zip.ps1"), std::ios::binary);
   if (!zipIn)
     return;
 
@@ -410,7 +410,7 @@ void Solution::writeMakeFile() const
   zip << zipIn.rdbuf();
   zip.close();
 
-  makeFileIn.open(pathFromRoot(L"Projects\\PerlMagick\\Makefile.PL.in"));
+  makeFileIn.open(pathFromRoot(L"ProjectConfigs\\PerlMagick\\Makefile.PL.in"));
   if (!makeFileIn)
     return;
 
