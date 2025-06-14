@@ -402,7 +402,7 @@ void Solution::writeMakeFile() const
 
   lib.close();
 
-  zipIn=wifstream(pathFromRoot(L"ProjectConfigs\\PerlMagick\\Zip.ps1"), std::ios::binary);
+  zipIn=wifstream(pathFromRoot(L"Build\\PerlMagick\\Zip.ps1"), std::ios::binary);
   if (!zipIn)
     return;
 
@@ -410,7 +410,7 @@ void Solution::writeMakeFile() const
   zip << zipIn.rdbuf();
   zip.close();
 
-  makeFileIn.open(pathFromRoot(L"ProjectConfigs\\PerlMagick\\Makefile.PL.in"));
+  makeFileIn.open(pathFromRoot(L"Build\\PerlMagick\\Makefile.PL.in"));
   if (!makeFileIn)
     return;
 
