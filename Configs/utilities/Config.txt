@@ -1,0 +1,10 @@
+[APPLICATION]
+
+[INCLUDES]
+..
+
+[REFERENCES]
+MagickCore
+MagickWand
+
+[MAGICK_PROJECT]

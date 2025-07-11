@@ -1,0 +1,7 @@
+[CODER]
+
+[REFERENCES]
+cairo
+glib
+harfbuzz
+pango

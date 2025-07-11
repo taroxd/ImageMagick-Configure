@@ -1,0 +1,14 @@
+[CODER]
+
+[INCLUDES]
+..
+
+[EXCLUDES]
+wmf.c
+x.c
+xwd.c
+
+[REFERENCES]
+MagickCore
+
+[MAGICK_PROJECT]

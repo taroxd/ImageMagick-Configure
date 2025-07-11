@@ -35,9 +35,9 @@ private:
 
   static void loadDirectory(const Options &options,const wstring directory,vector<Config> &configs);
 
-  static void loadProject(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs);
+  static Config loadConfig(const Options &options,const wstring &name,const wstring &directory);
 
-  static Config loadProjectConfig(const Options &options,const wstring &name,const wstring &directory);
+  static void loadConfig(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs);
 
   static void removeInvalidReferences(const Options &options,vector<Config> &configs);
 

@@ -1,0 +1,7 @@
+[CODER]
+
+[STATIC_DEFINES]
+OPJ_STATIC
+
+[REFERENCES]
+openjpeg

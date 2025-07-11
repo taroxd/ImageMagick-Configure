@@ -1,0 +1,15 @@
+[DYNAMIC_LIBRARY]
+
+[DEFINES]
+_MAGICKLIB_
+
+[INCLUDES]
+\ImageMagick
+
+[EXCLUDES]
+tests\
+
+[REFERENCES]
+MagickCore
+
+[MAGICK_PROJECT]

@@ -1,0 +1,11 @@
+[DEMO]
+
+[OPTIONAL]
+
+[INCLUDES]
+\ImageMagick\
+\ImageMagick\Magick++\lib
+
+[REFERENCES]
+Magick++
+MagickCore

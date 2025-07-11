@@ -21,7 +21,7 @@
 
 void MagickBaseConfig::write(const Options &options)
 {
-  wifstream configIn(options.rootDirectory + L"ProjectConfigs\\MagickCore\\magick-baseconfig.h.in");
+  wifstream configIn(options.rootDirectory + L"Configure\\Configs\\MagickCore\\magick-baseconfig.h.in");
   if (!configIn)
     throwException(L"Unable to open magick-baseconfig.h.in");
 

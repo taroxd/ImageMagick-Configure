@@ -1,0 +1,7 @@
+[CODER]
+
+[CODER_REFERENCES]
+psd
+
+[REFERENCES]
+tiff

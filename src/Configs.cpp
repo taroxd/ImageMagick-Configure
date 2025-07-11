@@ -48,21 +48,21 @@ vector<Config> Configs::load(const Options &options)
   {
     if (options.isImageMagick7)
     {
-      loadProject(options,L"MagickCore",L"ImageMagick\\MagickCore",configs);
-      loadProject(options,L"MagickWand",L"ImageMagick\\MagickWand",configs);
-      loadProject(options,L"oss-fuzz",L"ImageMagick\\oss-fuzz",configs);
+      loadConfig(options,L"MagickCore",L"ImageMagick\\MagickCore",configs);
+      loadConfig(options,L"MagickWand",L"ImageMagick\\MagickWand",configs);
+      loadConfig(options,L"oss-fuzz",L"ImageMagick\\oss-fuzz",configs);
     }
     else
     {
-      loadProject(options,L"MagickCore",L"ImageMagick\\magick",configs);
-      loadProject(options,L"wand",L"ImageMagick\\wand",configs);
+      loadConfig(options,L"MagickCore",L"ImageMagick\\magick",configs);
+      loadConfig(options,L"wand",L"ImageMagick\\wand",configs);
     }
 
     loadCoders(options,configs);
-    loadProject(options,L"Magick++",L"ImageMagick\\Magick++",configs);
-    loadProject(options,L"demos",L"ImageMagick\\Magick++\\demo",configs);
-    loadProject(options,L"filters",L"ImageMagick\\filters",configs);
-    loadProject(options,L"utilities",L"ImageMagick\\utilities",configs);
+    loadConfig(options,L"Magick++",L"ImageMagick\\Magick++",configs);
+    loadConfig(options,L"demos",L"ImageMagick\\Magick++\\demo",configs);
+    loadConfig(options,L"filters",L"ImageMagick\\filters",configs);
+    loadConfig(options,L"utilities",L"ImageMagick\\utilities",configs);
     loadDirectory(options,L"OptionalApplications",configs);
   }
 
@@ -87,7 +87,7 @@ void Configs::loadCoders(const Options &options,vector<Config> &configs)
   if (!filesystem::exists(options.rootDirectory + coderDirectory))
     throwException(L"Cannot find coders directory");
 
-  wstring coderProjectsDirectory=options.rootDirectory + L"ProjectConfigs\\coders\\";
+  wstring coderProjectsDirectory=options.rootDirectory + L"Configure\\Configs\\coders\\";
   for (const auto& entry : filesystem::directory_iterator(coderProjectsDirectory))
   {
     if (!entry.is_regular_file() || !endsWith(entry.path().filename(),L".txt"))
@@ -124,19 +124,19 @@ void Configs::loadDirectory(const Options &options,const wstring directory,vecto
   }
 }
 
-void Configs::loadProject(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs)
+Config Configs::loadConfig(const Options &options,const wstring &name,const wstring &directory)
 {
-  Config config=loadProjectConfig(options,name,directory);
-  addConfig(config,options,configs);
-}
-
-Config Configs::loadProjectConfig(const Options &options,const wstring &name,const wstring &directory)
-{
-  wstring projectDirectory=options.rootDirectory + L"ProjectConfigs\\" + name;
+  wstring projectDirectory=options.rootDirectory + L"Configure\\Configs\\" + name;
   if (!filesystem::exists(projectDirectory))
     throwException(L"Cannot find project directory");
 
   return(Config::load(name,directory + L"\\",projectDirectory + L"\\Config.txt"));
+}
+
+void Configs::loadConfig(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs)
+{
+  Config config=loadConfig(options,name,directory);
+  addConfig(config,options,configs);
 }
 
 void Configs::removeInvalidReferences(const Options &options,vector<Config> &configs)

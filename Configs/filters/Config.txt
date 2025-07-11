@@ -1,0 +1,9 @@
+[FILTER]
+
+[INCLUDES]
+\ImageMagick
+
+[REFERENCES]
+MagickCore
+
+[MAGICK_PROJECT]
