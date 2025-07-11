@@ -21,9 +21,9 @@
 
 void PerlMagick::configure(const Options &options)
 {
-  filesystem::copy_file(options.rootDirectory + L"Configure\\Configs\\PerlMagick\\Zip.ps1", options.rootDirectory + L"ImageMagick\\PerlMagick\\Zip.ps1",filesystem::copy_options::overwrite_existing);
+  filesystem::copy_file(options.rootDirectory + L"Configure\\PerlMagick\\Zip.ps1", options.rootDirectory + L"ImageMagick\\PerlMagick\\Zip.ps1",filesystem::copy_options::overwrite_existing);
 
-  wifstream makeFileIn(options.rootDirectory + L"Configure\\Configs\\PerlMagick\\Makefile.PL.in");
+  wifstream makeFileIn(options.rootDirectory + L"Configure\\PerlMagick\\Makefile.PL.in");
   if (!makeFileIn)
     throwException(L"Unable to open Makefile.PL.in for reading.");
 

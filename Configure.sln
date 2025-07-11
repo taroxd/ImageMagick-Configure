@@ -20,80 +20,77 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{68488E9E
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configs", "Configs", "{E2FD1060-ED3C-4DBB-8062-E23F28C467B9}"
-	ProjectSection(SolutionItems) = preProject
-		Configs\package.version.h.in = Configs\package.version.h.in
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coders", "coders", "{30CC5A70-4134-432A-8799-7692EA731C8C}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\coders\Config.dng.txt = Configs\coders\Config.dng.txt
-		Configs\coders\Config.exr.txt = Configs\coders\Config.exr.txt
-		Configs\coders\Config.flif.txt = Configs\coders\Config.flif.txt
-		Configs\coders\Config.heic.txt = Configs\coders\Config.heic.txt
-		Configs\coders\Config.jbig.txt = Configs\coders\Config.jbig.txt
-		Configs\coders\Config.jp2.txt = Configs\coders\Config.jp2.txt
-		Configs\coders\Config.jpeg.txt = Configs\coders\Config.jpeg.txt
-		Configs\coders\Config.jxl.txt = Configs\coders\Config.jxl.txt
-		Configs\coders\Config.mat.txt = Configs\coders\Config.mat.txt
-		Configs\coders\Config.miff.txt = Configs\coders\Config.miff.txt
-		Configs\coders\Config.msl.txt = Configs\coders\Config.msl.txt
-		Configs\coders\Config.ora.txt = Configs\coders\Config.ora.txt
-		Configs\coders\Config.pango.txt = Configs\coders\Config.pango.txt
-		Configs\coders\Config.png.txt = Configs\coders\Config.png.txt
-		Configs\coders\Config.psd.txt = Configs\coders\Config.psd.txt
-		Configs\coders\Config.svg.txt = Configs\coders\Config.svg.txt
-		Configs\coders\Config.tiff.txt = Configs\coders\Config.tiff.txt
-		Configs\coders\Config.ttf.txt = Configs\coders\Config.ttf.txt
-		Configs\coders\Config.txt = Configs\coders\Config.txt
-		Configs\coders\Config.url.txt = Configs\coders\Config.url.txt
-		Configs\coders\Config.webp.txt = Configs\coders\Config.webp.txt
-		Configs\coders\ImageMagick.rc = Configs\coders\ImageMagick.rc
+		files\Configs\coders\Config.dng.txt = files\Configs\coders\Config.dng.txt
+		files\Configs\coders\Config.exr.txt = files\Configs\coders\Config.exr.txt
+		files\Configs\coders\Config.flif.txt = files\Configs\coders\Config.flif.txt
+		files\Configs\coders\Config.heic.txt = files\Configs\coders\Config.heic.txt
+		files\Configs\coders\Config.jbig.txt = files\Configs\coders\Config.jbig.txt
+		files\Configs\coders\Config.jp2.txt = files\Configs\coders\Config.jp2.txt
+		files\Configs\coders\Config.jpeg.txt = files\Configs\coders\Config.jpeg.txt
+		files\Configs\coders\Config.jxl.txt = files\Configs\coders\Config.jxl.txt
+		files\Configs\coders\Config.mat.txt = files\Configs\coders\Config.mat.txt
+		files\Configs\coders\Config.miff.txt = files\Configs\coders\Config.miff.txt
+		files\Configs\coders\Config.msl.txt = files\Configs\coders\Config.msl.txt
+		files\Configs\coders\Config.ora.txt = files\Configs\coders\Config.ora.txt
+		files\Configs\coders\Config.pango.txt = files\Configs\coders\Config.pango.txt
+		files\Configs\coders\Config.png.txt = files\Configs\coders\Config.png.txt
+		files\Configs\coders\Config.psd.txt = files\Configs\coders\Config.psd.txt
+		files\Configs\coders\Config.svg.txt = files\Configs\coders\Config.svg.txt
+		files\Configs\coders\Config.tiff.txt = files\Configs\coders\Config.tiff.txt
+		files\Configs\coders\Config.ttf.txt = files\Configs\coders\Config.ttf.txt
+		files\Configs\coders\Config.txt = files\Configs\coders\Config.txt
+		files\Configs\coders\Config.url.txt = files\Configs\coders\Config.url.txt
+		files\Configs\coders\Config.webp.txt = files\Configs\coders\Config.webp.txt
+		files\Configs\coders\ImageMagick.rc = files\Configs\coders\ImageMagick.rc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{198325E6-F00D-43CA-A502-862EBF744265}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\demos\Config.txt = Configs\demos\Config.txt
+		files\Configs\demos\Config.txt = files\Configs\demos\Config.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "filters", "filters", "{4A5D5FD2-71A4-490F-87DC-21FB1B0CEBDE}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\filters\Config.txt = Configs\filters\Config.txt
+		files\Configs\filters\Config.txt = files\Configs\filters\Config.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Magick++", "Magick++", "{546370C2-47D9-4AC1-A0BE-0487815C4790}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\Magick++\Config.txt = Configs\Magick++\Config.txt
-		Configs\Magick++\ImageMagick.rc = Configs\Magick++\ImageMagick.rc
+		files\Configs\Magick++\Config.txt = files\Configs\Magick++\Config.txt
+		files\Configs\Magick++\ImageMagick.rc = files\Configs\Magick++\ImageMagick.rc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MagickCore", "MagickCore", "{4010378F-419B-4DC8-BAFB-3B5371DD6B9E}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\MagickCore\Config.txt = Configs\MagickCore\Config.txt
-		Configs\MagickCore\ImageMagick.rc = Configs\MagickCore\ImageMagick.rc
-		Configs\MagickCore\magick-baseconfig.h.in = Configs\MagickCore\magick-baseconfig.h.in
+		files\Configs\MagickCore\Config.txt = files\Configs\MagickCore\Config.txt
+		files\Configs\MagickCore\ImageMagick.rc = files\Configs\MagickCore\ImageMagick.rc
+		files\Configs\MagickCore\magick-baseconfig.h.in = files\Configs\MagickCore\magick-baseconfig.h.in
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MagickWand", "MagickWand", "{53EB320D-B54E-4BBD-B68F-26BEB1DAC4DF}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\MagickWand\Config.txt = Configs\MagickWand\Config.txt
-		Configs\MagickWand\ImageMagick.rc = Configs\MagickWand\ImageMagick.rc
+		files\Configs\MagickWand\Config.txt = files\Configs\MagickWand\Config.txt
+		files\Configs\MagickWand\ImageMagick.rc = files\Configs\MagickWand\ImageMagick.rc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "oss-fuzz", "oss-fuzz", "{AE6DF2DE-159D-47FC-BA77-F6D309F042BB}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\oss-fuzz\Config.txt = Configs\oss-fuzz\Config.txt
+		files\Configs\oss-fuzz\Config.txt = files\Configs\oss-fuzz\Config.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utilities", "utilities", "{D32F7E74-E088-458C-8621-19A472AF8417}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\utilities\Config.txt = Configs\utilities\Config.txt
-		Configs\utilities\ImageMagick.rc = Configs\utilities\ImageMagick.rc
+		files\Configs\utilities\Config.txt = files\Configs\utilities\Config.txt
+		files\Configs\utilities\ImageMagick.rc = files\Configs\utilities\ImageMagick.rc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wand", "wand", "{F47833AC-C3FE-4FF5-A205-FCE82DF6773F}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\wand\Config.txt = Configs\wand\Config.txt
-		Configs\wand\ImageMagick.rc = Configs\wand\ImageMagick.rc
+		files\Configs\wand\Config.txt = files\Configs\wand\Config.txt
+		files\Configs\wand\ImageMagick.rc = files\Configs\wand\ImageMagick.rc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerlMagick", "PerlMagick", "{D912D97E-0B56-4A8F-9FFA-C6602BCD01F1}"
@@ -106,16 +103,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenCL", "OpenCL", "{D5E182
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CL", "CL", "{8F3B69B3-99D7-4A07-881D-396169AE3316}"
 	ProjectSection(SolutionItems) = preProject
-		Configs\OpenCL\CL\cl.h = Configs\OpenCL\CL\cl.h
-		Configs\OpenCL\CL\cl.hpp = Configs\OpenCL\CL\cl.hpp
-		Configs\OpenCL\CL\cl_d3d10.h = Configs\OpenCL\CL\cl_d3d10.h
-		Configs\OpenCL\CL\cl_d3d11.h = Configs\OpenCL\CL\cl_d3d11.h
-		Configs\OpenCL\CL\cl_dx9_media_sharing.h = Configs\OpenCL\CL\cl_dx9_media_sharing.h
-		Configs\OpenCL\CL\cl_ext.h = Configs\OpenCL\CL\cl_ext.h
-		Configs\OpenCL\CL\cl_gl.h = Configs\OpenCL\CL\cl_gl.h
-		Configs\OpenCL\CL\cl_gl_ext.h = Configs\OpenCL\CL\cl_gl_ext.h
-		Configs\OpenCL\CL\cl_platform.h = Configs\OpenCL\CL\cl_platform.h
-		Configs\OpenCL\CL\opencl.h = Configs\OpenCL\CL\opencl.h
+		files\OpenCL\CL\cl.h = files\OpenCL\CL\cl.h
+		files\OpenCL\CL\cl.hpp = files\OpenCL\CL\cl.hpp
+		files\OpenCL\CL\cl_d3d10.h = files\OpenCL\CL\cl_d3d10.h
+		files\OpenCL\CL\cl_d3d11.h = files\OpenCL\CL\cl_d3d11.h
+		files\OpenCL\CL\cl_dx9_media_sharing.h = files\OpenCL\CL\cl_dx9_media_sharing.h
+		files\OpenCL\CL\cl_ext.h = files\OpenCL\CL\cl_ext.h
+		files\OpenCL\CL\cl_gl.h = files\OpenCL\CL\cl_gl.h
+		files\OpenCL\CL\cl_gl_ext.h = files\OpenCL\CL\cl_gl_ext.h
+		files\OpenCL\CL\cl_platform.h = files\OpenCL\CL\cl_platform.h
+		files\OpenCL\CL\opencl.h = files\OpenCL\CL\opencl.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{5EFF285A-3716-4B7C-B983-504064A86E04}"
+	ProjectSection(SolutionItems) = preProject
+		files\package.version.h.in = files\package.version.h.in
 	EndProjectSection
 EndProject
 Global
@@ -147,7 +149,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {68488E9E-3323-4001-BBCA-4C2CDB6BED8C}
 		{3A5E34B4-03A6-4B48-8FDE-264C35052500} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{E2FD1060-ED3C-4DBB-8062-E23F28C467B9} = {68488E9E-3323-4001-BBCA-4C2CDB6BED8C}
+		{E2FD1060-ED3C-4DBB-8062-E23F28C467B9} = {5EFF285A-3716-4B7C-B983-504064A86E04}
 		{30CC5A70-4134-432A-8799-7692EA731C8C} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
 		{198325E6-F00D-43CA-A502-862EBF744265} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
 		{4A5D5FD2-71A4-490F-87DC-21FB1B0CEBDE} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
@@ -157,9 +159,10 @@ Global
 		{AE6DF2DE-159D-47FC-BA77-F6D309F042BB} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
 		{D32F7E74-E088-458C-8621-19A472AF8417} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
 		{F47833AC-C3FE-4FF5-A205-FCE82DF6773F} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
-		{D912D97E-0B56-4A8F-9FFA-C6602BCD01F1} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
-		{D5E18201-33D6-4B7B-A167-27F74C3F4512} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
+		{D912D97E-0B56-4A8F-9FFA-C6602BCD01F1} = {5EFF285A-3716-4B7C-B983-504064A86E04}
+		{D5E18201-33D6-4B7B-A167-27F74C3F4512} = {5EFF285A-3716-4B7C-B983-504064A86E04}
 		{8F3B69B3-99D7-4A07-881D-396169AE3316} = {D5E18201-33D6-4B7B-A167-27F74C3F4512}
+		{5EFF285A-3716-4B7C-B983-504064A86E04} = {68488E9E-3323-4001-BBCA-4C2CDB6BED8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADFAEA65-5C6A-4500-B6DC-0D15DD671523}

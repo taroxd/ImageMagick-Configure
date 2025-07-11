@@ -304,7 +304,7 @@ void VersionInfo::write() const
 {
   wstring versionFile=L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h";
 
-  write(L"Configure\\Configs\\package.version.h.in",L"Configure\\Configs\\package.version.h");
+  write(L"Configure\\package.version.h.in",L"Configure\\package.version.h");
   write(L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h.in",versionFile);
   write(L"ImageMagick\\config\\configure.xml.in",L"Artifacts\\bin\\configure.xml");
 
