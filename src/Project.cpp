@@ -99,7 +99,7 @@ const wstring Project::includeDirectories() const
     directories+=L"$(SolutionDir)Artifacts\\include\\" + reference + L";";
 
   if (_options.useOpenCL && _config.useOpenCL())
-    directories+=L"$(SolutionDir)Build\\OpenCL";
+    directories+=L"$(SolutionDir)Configure\\Configs\\OpenCL";
 
   return(directories);
 }
