@@ -308,7 +308,7 @@ void VersionInfo::write() const
   write(L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h.in",versionFile);
   write(L"ImageMagick\\config\\configure.xml.in",L"Artifacts\\bin\\configure.xml");
 
-  filesystem::copy(_options.rootDirectory + versionFile,_options.rootDirectory + L"Build\\version.h",filesystem::copy_options::overwrite_existing);
+  filesystem::copy(_options.rootDirectory + versionFile,_options.rootDirectory + L"Configure\\version.h",filesystem::copy_options::overwrite_existing);
 }
 
 void VersionInfo::write(wstring inputFile,wstring outputFile) const
