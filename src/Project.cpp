@@ -476,7 +476,7 @@ void Project::writeFiles(wofstream &file) const
       if (_config.useNasm())
       {
         file << "    <CustomBuild Include=\"$(SolutionDir)" << _config.directory() << fileName << "\">" << endl;
-        file << "      <Command>$(SolutionDir)Build\\nasm" << nasmOptions() << "</Command>" << endl;
+        file << "      <Command>$(SolutionDir)Configure\\nasm.exe" << nasmOptions() << "</Command>" << endl;
         if (fileNameCount[objectName]++ == 0)
           file << "      <Outputs>$(IntDir)%(Filename).obj;%(Outputs)</Outputs>" << endl;
         else
