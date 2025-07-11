@@ -20,6 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{68488E9E
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configs", "Configs", "{E2FD1060-ED3C-4DBB-8062-E23F28C467B9}"
+	ProjectSection(SolutionItems) = preProject
+		Configs\package.version.h.in = Configs\package.version.h.in
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coders", "coders", "{30CC5A70-4134-432A-8799-7692EA731C8C}"
 	ProjectSection(SolutionItems) = preProject
@@ -93,6 +96,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wand", "wand", "{F47833AC-C
 		Configs\wand\ImageMagick.rc = Configs\wand\ImageMagick.rc
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerlMagick", "PerlMagick", "{D912D97E-0B56-4A8F-9FFA-C6602BCD01F1}"
+	ProjectSection(SolutionItems) = preProject
+		Configs\PerlMagick\Makefile.PL.in = Configs\PerlMagick\Makefile.PL.in
+		Configs\PerlMagick\Zip.ps1 = Configs\PerlMagick\Zip.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenCL", "OpenCL", "{D5E18201-33D6-4B7B-A167-27F74C3F4512}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CL", "CL", "{8F3B69B3-99D7-4A07-881D-396169AE3316}"
+	ProjectSection(SolutionItems) = preProject
+		Configs\OpenCL\CL\cl.h = Configs\OpenCL\CL\cl.h
+		Configs\OpenCL\CL\cl.hpp = Configs\OpenCL\CL\cl.hpp
+		Configs\OpenCL\CL\cl_d3d10.h = Configs\OpenCL\CL\cl_d3d10.h
+		Configs\OpenCL\CL\cl_d3d11.h = Configs\OpenCL\CL\cl_d3d11.h
+		Configs\OpenCL\CL\cl_dx9_media_sharing.h = Configs\OpenCL\CL\cl_dx9_media_sharing.h
+		Configs\OpenCL\CL\cl_ext.h = Configs\OpenCL\CL\cl_ext.h
+		Configs\OpenCL\CL\cl_gl.h = Configs\OpenCL\CL\cl_gl.h
+		Configs\OpenCL\CL\cl_gl_ext.h = Configs\OpenCL\CL\cl_gl_ext.h
+		Configs\OpenCL\CL\cl_platform.h = Configs\OpenCL\CL\cl_platform.h
+		Configs\OpenCL\CL\opencl.h = Configs\OpenCL\CL\opencl.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|arm64 = Debug|arm64
@@ -132,6 +157,9 @@ Global
 		{AE6DF2DE-159D-47FC-BA77-F6D309F042BB} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
 		{D32F7E74-E088-458C-8621-19A472AF8417} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
 		{F47833AC-C3FE-4FF5-A205-FCE82DF6773F} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
+		{D912D97E-0B56-4A8F-9FFA-C6602BCD01F1} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
+		{D5E18201-33D6-4B7B-A167-27F74C3F4512} = {E2FD1060-ED3C-4DBB-8062-E23F28C467B9}
+		{8F3B69B3-99D7-4A07-881D-396169AE3316} = {D5E18201-33D6-4B7B-A167-27F74C3F4512}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADFAEA65-5C6A-4500-B6DC-0D15DD671523}
