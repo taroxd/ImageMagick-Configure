@@ -35,7 +35,9 @@ public:
 
 private:
 
-  void cleanupFolders(Options &options,WaitDialog &waitDialog) const;
+  static void cleanupFolders(Options &options,WaitDialog &waitDialog);
+
+  static void copyFiles(Options &options);
 
   BOOL createFiles(Options &options,WaitDialog &waitDialog) const;
 

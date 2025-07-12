@@ -66,9 +66,6 @@ BOOL ConfigureApp::InitInstance()
     if (!info.showWizard)
       waitDialog.writeToConsole=true;
 
-    waitDialog.setSteps(6);
-
-    cleanupFolders(options,waitDialog);
     return(createFiles(options,waitDialog));
   }
   catch (exception ex)
@@ -78,9 +75,8 @@ BOOL ConfigureApp::InitInstance()
   } 
 }
 
-void ConfigureApp::cleanupFolders(Options &options,WaitDialog &waitDialog) const
+void ConfigureApp::cleanupFolders(Options &options,WaitDialog &waitDialog)
 {
-  waitDialog.nextStep(L"Cleaning up folders...");
   filesystem::remove_all(options.rootDirectory + L"Artifacts\\demo");
   filesystem::remove_all(options.rootDirectory + L"Artifacts\\fuzz");
   
@@ -91,8 +87,27 @@ void ConfigureApp::cleanupFolders(Options &options,WaitDialog &waitDialog) const
 #endif
 }
 
+void ConfigureApp::copyFiles(Options &options)
+{
+  wstring binFolder=options.rootDirectory + L"Artifacts\\bin";
+
+  if (filesystem::exists(binFolder))
+    filesystem::create_directories(binFolder);
+
+  filesystem::copy(options.rootDirectory + L"Configs\\xml\\*",binFolder,filesystem::copy_options::overwrite_existing);
+  filesystem::copy(options.rootDirectory + L"ColorProfiles\\*",binFolder,filesystem::copy_options::overwrite_existing);
+}
+
 BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
 {
+  waitDialog.setSteps(15);
+
+  waitDialog.nextStep(L"Cleaning up folders...");
+  cleanupFolders(options,waitDialog);
+
+  waitDialog.nextStep(L"Copying files...");
+  cleanupFolders(options,waitDialog);
+
   waitDialog.nextStep(L"Loading configuration files...");
   vector<Config> configs=Configs::load(options);
 
@@ -108,7 +123,7 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
   waitDialog.nextStep(L"Loading version information...");
   optional<VersionInfo> versionInfo=VersionInfo::load(options);
   if (versionInfo)
-    writeImageMagickFiles(options, *versionInfo,waitDialog);
+    writeImageMagickFiles(options,*versionInfo,waitDialog);
 
   return(TRUE);
 }
@@ -129,8 +144,6 @@ const wstring ConfigureApp::getRootDirectory() const
 
 void ConfigureApp::writeImageMagickFiles(const Options &options,const VersionInfo &versionInfo,WaitDialog &waitDialog) const
 {
-  waitDialog.setSteps(7);
-
   waitDialog.nextStep(L"Writing version information...");
   versionInfo.write();
 
