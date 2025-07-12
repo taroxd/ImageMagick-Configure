@@ -94,8 +94,8 @@ void ConfigureApp::copyFiles(Options &options)
   if (!filesystem::exists(binFolder))
     filesystem::create_directories(binFolder);
 
-  filesystem::copy(options.rootDirectory + L"Configs\\xml\\*",binFolder,filesystem::copy_options::overwrite_existing);
-  filesystem::copy(options.rootDirectory + L"ColorProfiles\\*",binFolder,filesystem::copy_options::overwrite_existing);
+  filesystem::copy(options.rootDirectory + L"Configure\\Configs\\xml\\*",binFolder,filesystem::copy_options::overwrite_existing);
+  filesystem::copy(options.rootDirectory + L"Configure\\ColorProfiles\\*",binFolder,filesystem::copy_options::overwrite_existing);
 }
 
 BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
