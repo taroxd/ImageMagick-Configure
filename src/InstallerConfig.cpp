@@ -22,7 +22,7 @@
 
 void InstallerConfig::write(const Options &options,const VersionInfo &versionInfo)
 {
-  if (!filesystem::exists(options.rootDirectory + L"Installer"))
+  if (!filesystem::exists(options.rootDirectory + L"Configure\\Installer"))
     return;
 
   wstring configFileName=L"Configure\\Installer\\Inno\\config.isx";

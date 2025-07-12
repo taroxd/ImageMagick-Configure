@@ -111,6 +111,11 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
   waitDialog.nextStep(L"Loading configuration files...");
   vector<Config> configs=Configs::load(options);
 
+  waitDialog.nextStep(L"Loading version information...");
+  optional<VersionInfo> versionInfo=VersionInfo::load(options);
+  if (versionInfo)
+    writeImageMagickFiles(options,*versionInfo,waitDialog);
+
   waitDialog.nextStep(L"Creating projects...");
   vector<Project> projects=Projects::create(options,configs);
 
@@ -119,11 +124,6 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
 
   waitDialog.nextStep(L"Writing solution files...");
   Solution::write(options,projects);
-
-  waitDialog.nextStep(L"Loading version information...");
-  optional<VersionInfo> versionInfo=VersionInfo::load(options);
-  if (versionInfo)
-    writeImageMagickFiles(options,*versionInfo,waitDialog);
 
   return(TRUE);
 }
