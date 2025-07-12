@@ -114,16 +114,18 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
   waitDialog.nextStep(L"Cleaning up directories...");
   cleanupDirectories(options,waitDialog);
 
-  waitDialog.nextStep(L"Copying files...");
-  copyFiles(options);
-
-  waitDialog.nextStep(L"Loading configuration files...");
-  vector<Config> configs=Configs::load(options);
-
   waitDialog.nextStep(L"Loading version information...");
   optional<VersionInfo> versionInfo=VersionInfo::load(options);
   if (versionInfo)
+  {
+    waitDialog.nextStep(L"Copying files...");
+    copyFiles(options);
+
     writeImageMagickFiles(options,*versionInfo,waitDialog);
+  }
+
+  waitDialog.nextStep(L"Loading configuration files...");
+  vector<Config> configs=Configs::load(options);
 
   waitDialog.nextStep(L"Creating projects...");
   vector<Project> projects=Projects::create(options,configs);
