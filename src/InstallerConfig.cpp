@@ -25,8 +25,8 @@ void InstallerConfig::write(const Options &options,const VersionInfo &versionInf
   if (!filesystem::exists(options.rootDirectory + L"Installer"))
     return;
 
-  wstring configFileName=L"Installer\\Inno\\config.isx";
-  versionInfo.write(L"Installer\\Inno\\config.isx.in",configFileName);
+  wstring configFileName=L"Configure\\Installer\\Inno\\config.isx";
+  versionInfo.write(L"Configure\\Installer\\Inno\\config.isx.in",configFileName);
 
   wofstream configFile(options.rootDirectory + configFileName,ios::app);
 

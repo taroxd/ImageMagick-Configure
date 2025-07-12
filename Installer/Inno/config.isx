@@ -1,0 +1,10 @@
+#define public MagickPackageName "ImageMagick"
+#define public MagickPackageVersion "7.1.2"
+#define public MagickPackageFullVersion "7.1.2.0"
+#define public MagickPackageFullVersionText "7.1.2-0 (Beta)"
+#define public MagickPackageReleaseDate "2025-07-04"
+#define public QuantumDepth "16"
+#define public MagickStaticPackage 1
+#define public Magick64BitArchitecture 1
+#define public MagickHDRI 1
+#define public MagickVersion7 1
