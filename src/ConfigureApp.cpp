@@ -91,7 +91,7 @@ void ConfigureApp::copyFiles(Options &options)
 {
   wstring binFolder=options.rootDirectory + L"Artifacts\\bin";
 
-  if (filesystem::exists(binFolder))
+  if (!filesystem::exists(binFolder))
     filesystem::create_directories(binFolder);
 
   filesystem::copy(options.rootDirectory + L"Configs\\xml\\*",binFolder,filesystem::copy_options::overwrite_existing);
