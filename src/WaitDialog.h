@@ -31,6 +31,8 @@ public:
 
   void nextStep(const wstring &description);
 
+  bool writeToConsole;
+
 private:
 
   void pump();

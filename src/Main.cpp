@@ -17,85 +17,18 @@
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-#include "WaitDialog.h"
+#include "ConfigureApp.h"
 
-WaitDialog::WaitDialog()
-  : CDialog(),
-    writeToConsole(false),
-    _steps(0),
-    _current(0)
+int wmain(int argc,wchar_t *argv[])
 {
-  Create(IDD_WAITDIALOG);
-}
+  ConfigureApp
+    app;
 
-WaitDialog::~WaitDialog()
-{
-  if (!IsWindow(m_hWnd))
-    return;
+  if (!AfxWinInit(GetModuleHandle(NULL),NULL,GetCommandLineW(),SW_SHOWNORMAL))
+    return(1);
 
-  DestroyWindow();
-}
+  if (!app.InitInstance())
+    return(1);
 
-void WaitDialog::setSteps(const int steps)
-{
-  ShowWindow(SW_SHOW);
-  _steps=steps;
-  _current=0;
-}
-
-void WaitDialog::nextStep(const wstring &description)
-{
-  setPercentComplete((++_current * 100)/_steps);
-  setMessageText(description);
-  pump();
-}
-
-void WaitDialog::pump()
-{
-  LONG
-    idle;
-
-  MSG
-    msg;
-
-  while (PeekMessage(&msg,NULL,0,0,PM_NOREMOVE))
-  {
-    if (!AfxGetApp()->PumpMessage())
-      PostQuitMessage(0);
-  }
-
-  idle=0;
-  while(AfxGetApp()->OnIdle(idle++));
-}
-
-void WaitDialog::setMessageText(const wstring &text)
-{
-  CStatic
-    *control;
-
-  if (writeToConsole)
-  {
-    wcout << text << endl;
-    return;
-  }
-
-  control=(CStatic *) GetDlgItem(IDC_MSGCTRL);
-  control->SetWindowText(text.c_str());
-}
-
-void WaitDialog::setPercentComplete(int percent)
-{
-  CProgressCtrl
-    *control;
-
-  if (!IsWindow(m_hWnd))
-    return;
-
-  if (percent < 0)
-    percent=0;
-  else if (percent > 100)
-    percent=100;
-
-  control=(CProgressCtrl *) GetDlgItem(IDC_PROGRESSCTRL);
-  control->SetPos(percent);
+  return(0);
 }

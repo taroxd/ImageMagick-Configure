@@ -37,16 +37,12 @@ BEGIN_MESSAGE_MAP(ConfigureApp, CWinApp)
   ON_COMMAND(ID_HELP, CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
-ConfigureApp theApp;
-
 ConfigureApp::ConfigureApp()
 {
 }
 
 BOOL ConfigureApp::InitInstance()
 {
-  tryAttachConsole();
-
   try
   {
     Options options(getRootDirectory());
@@ -67,6 +63,9 @@ BOOL ConfigureApp::InitInstance()
     }
     
     WaitDialog waitDialog;
+    if (!info.showWizard)
+      waitDialog.writeToConsole=true;
+
     waitDialog.setSteps(6);
 
     cleanupFolders(options,waitDialog);
@@ -126,18 +125,6 @@ const wstring ConfigureApp::getRootDirectory() const
   }
 
   throwException(L"Cannot find root directory for ConfigureApp.");
-}
-
-void ConfigureApp::tryAttachConsole()
-{
-  if (!AttachConsole(ATTACH_PARENT_PROCESS))
-    return;
-
-  freopen_s((FILE**)stdout,"CONOUT$","w",stdout);
-  freopen_s((FILE**)stderr,"CONOUT$","w",stderr);
-  ios::sync_with_stdio();
-
-  cout << endl << "Console attached successfully." << endl;
 }
 
 void ConfigureApp::writeImageMagickFiles(const Options &options,const VersionInfo &versionInfo,WaitDialog &waitDialog) const

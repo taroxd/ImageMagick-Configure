@@ -41,7 +41,5 @@ private:
 
   const wstring getRootDirectory() const;
 
-  void tryAttachConsole();
-
   void writeImageMagickFiles(const Options &options,const VersionInfo &versionInfo,WaitDialog &waitDialog) const;
 };
