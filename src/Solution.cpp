@@ -47,7 +47,7 @@ const wstring Solution::solutionName(const Options &options)
 
 void Solution::write(const Options &options,const vector<Project> &projects)
 {
-  wstring solutionFileName = options.rootDirectory + solutionName(options);
+  wstring solutionFileName=options.rootDirectory + solutionName(options);
   wofstream file(solutionFileName);
   if (!file)
     throwException(L"Failed to open file: " + solutionFileName);
@@ -69,9 +69,13 @@ void Solution::write(const Options &options,const vector<Project> &projects)
 
 void Solution::writeConfigDirectory(wofstream &file,const Options& options)
 {
+  wstring binDirectory=options.rootDirectory + L"Artifacts\\bin";
+  if (!filesystem::exists(binDirectory))
+    return;
+
   file << "Project(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Config\", \"Config\", \"{" << createGuid(L"Config") << "}\"" << endl;
   file << "\tProjectSection(SolutionItems) = preProject" << endl;
-  for (const auto& entry : filesystem::directory_iterator(options.rootDirectory + L"Artifacts\\bin"))
+  for (const auto& entry : filesystem::directory_iterator(binDirectory))
   {
     if (!entry.is_regular_file())
       continue;
