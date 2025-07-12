@@ -19,7 +19,7 @@
 */
 #include "Solution.h"
 
-const wstring Solution::solutionFolder(const Project &project)
+const wstring Solution::solutionDirectory(const Project &project)
 {
   switch (project.type())
   {
@@ -52,12 +52,11 @@ void Solution::write(const Options &options,const vector<Project> &projects)
   if (!file)
     throwException(L"Failed to open file: " + solutionFileName);
 
-  set<wstring> solutionFolders;
   file << L"Microsoft Visual Studio Solution File, Format Version 12.00" << endl;
   writeVisualStudioVersion(file,options);
   writeProjects(file,projects);
-  writeConfigFolder(file,options);
-  writeProjectFolders(file,projects);
+  writeConfigDirectory(file,options);
+  writeProjectDirectories(file,projects);
   file << L"Global" << endl;
   file << L"\tGlobalSection(SolutionConfigurationPlatforms) = preSolution" << endl;
   file << L"\t\tDebug|" << options.architectureName() << " = Debug|" << options.architectureName() << endl;
@@ -68,7 +67,7 @@ void Solution::write(const Options &options,const vector<Project> &projects)
   file << L"EndGlobal" << endl;
 }
 
-void Solution::writeConfigFolder(wofstream &file,const Options& options)
+void Solution::writeConfigDirectory(wofstream &file,const Options& options)
 {
   file << "Project(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Config\", \"Config\", \"{" << createGuid(L"Config") << "}\"" << endl;
   file << "\tProjectSection(SolutionItems) = preProject" << endl;
@@ -87,15 +86,15 @@ void Solution::writeConfigFolder(wofstream &file,const Options& options)
   file << "EndProject" << endl;
 }
 
-void Solution::writeProjectFolders(wofstream &file,const vector<Project>& projects)
+void Solution::writeProjectDirectories(wofstream &file,const vector<Project>& projects)
 {
-  set<wstring> solutionFolders;
+  set<wstring> solutionDirectories;
   for (const auto& project : projects)
-    solutionFolders.insert(solutionFolder(project));
+    solutionDirectories.insert(solutionDirectory(project));
 
-  for (const auto& solutionFolder : solutionFolders)
+  for (const auto& solutionDirectory : solutionDirectories)
   {
-    file << "Project(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"" << solutionFolder << "\", \"" << solutionFolder << "\", \"{" << createGuid(solutionFolder) << "}\"" << endl;
+    file << "Project(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"" << solutionDirectory << "\", \"" << solutionDirectory << "\", \"{" << createGuid(solutionDirectory) << "}\"" << endl;
     file << "EndProject" << endl;
   }
 }
@@ -127,7 +126,7 @@ void Solution::writeProjectsNesting(wofstream& file,const vector<Project>& proje
   file << L"\tGlobalSection(NestedProjects) = preSolution" << endl;
   for (const auto& project : projects)
   {
-    file << L"\t\t{" << project.guid() << L"} = {" << createGuid(solutionFolder(project)) << L"}" << endl;
+    file << L"\t\t{" << project.guid() << L"} = {" << createGuid(solutionDirectory(project)) << L"}" << endl;
   }
   file << L"\tEndGlobalSection" << endl;
 }

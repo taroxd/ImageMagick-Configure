@@ -33,12 +33,12 @@ const wstring XmlConfigFiles::getPolicyFileName(const Options &options)
 
 void XmlConfigFiles::write(const Options &options)
 {
-  const wstring configFolder=options.rootDirectory + L"ImageMagick\\config\\";
-  const wstring targetFolder=options.rootDirectory + L"Artifacts\\bin\\";
+  const wstring configDirectory=options.rootDirectory + L"ImageMagick\\config\\";
+  const wstring targetDirectory=options.rootDirectory + L"Artifacts\\bin\\";
 
-  filesystem::copy_file(configFolder + getPolicyFileName(options),targetFolder + L"policy.xml",filesystem::copy_options::overwrite_existing);
+  filesystem::copy_file(configDirectory + getPolicyFileName(options),targetDirectory + L"policy.xml",filesystem::copy_options::overwrite_existing);
 
   vector<wstring> xmlFiles = { L"colors.xml", L"english.xml", L"locale.xml", L"log.xml", L"mime.xml", L"thresholds.xml" };
   for (auto& xmlFile : xmlFiles)
-    filesystem::copy_file(configFolder + xmlFile,targetFolder + xmlFile,filesystem::copy_options::overwrite_existing);
+    filesystem::copy_file(configDirectory + xmlFile,targetDirectory + xmlFile,filesystem::copy_options::overwrite_existing);
 }

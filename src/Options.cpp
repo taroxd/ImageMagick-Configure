@@ -119,17 +119,17 @@ wstring Options::getEnvironmentVariable(const wchar_t *name)
 
 VisualStudioVersion Options::getVisualStudioVersion()
 {
-  if (hasVisualStudioFolder(L"2022"))
+  if (hasVisualStudioDirectory(L"2022"))
     return(VisualStudioVersion::VS2022);
-  else if (hasVisualStudioFolder(L"2019"))
+  else if (hasVisualStudioDirectory(L"2019"))
     return(VisualStudioVersion::VS2019);
-  else if (hasVisualStudioFolder(L"2017"))
+  else if (hasVisualStudioDirectory(L"2017"))
     return(VisualStudioVersion::VS2017);
   else
     return(VSLATEST);
 }
 
-bool Options::hasVisualStudioFolder(const wchar_t *name)
+bool Options::hasVisualStudioDirectory(const wchar_t *name)
 {
   wstring
     path;

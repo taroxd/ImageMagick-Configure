@@ -75,7 +75,7 @@ BOOL ConfigureApp::InitInstance()
   } 
 }
 
-void ConfigureApp::cleanupFolders(Options &options,WaitDialog &waitDialog)
+void ConfigureApp::cleanupDirectories(Options &options,WaitDialog &waitDialog)
 {
   filesystem::remove_all(options.rootDirectory + L"Artifacts\\demo");
   filesystem::remove_all(options.rootDirectory + L"Artifacts\\fuzz");
@@ -89,21 +89,30 @@ void ConfigureApp::cleanupFolders(Options &options,WaitDialog &waitDialog)
 
 void ConfigureApp::copyFiles(Options &options)
 {
-  wstring binFolder=options.rootDirectory + L"Artifacts\\bin";
+  wstring binDirectory=options.rootDirectory + L"Artifacts\\bin";
 
-  if (!filesystem::exists(binFolder))
-    filesystem::create_directories(binFolder);
+  if (!filesystem::exists(binDirectory))
+    filesystem::create_directories(binDirectory);
 
-  filesystem::copy(options.rootDirectory + L"Configure\\Configs\\xml\\*",binFolder,filesystem::copy_options::overwrite_existing);
-  filesystem::copy(options.rootDirectory + L"Configure\\ColorProfiles\\*",binFolder,filesystem::copy_options::overwrite_existing);
+  copyFiles(options.rootDirectory + L"Configure\\Configs\\xml",binDirectory);
+  copyFiles(options.rootDirectory + L"Configure\\ColorProfiles",binDirectory);
+}
+
+void ConfigureApp::copyFiles(const wstring &sourceDirectory,const wstring &targetDirectory)
+{
+  for (const auto& entry : filesystem::directory_iterator(sourceDirectory))
+  {
+    if (entry.is_regular_file())
+      filesystem::copy(entry.path(),targetDirectory + L"\\" + entry.path().filename().wstring(),filesystem::copy_options::overwrite_existing);
+  }
 }
 
 BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
 {
   waitDialog.setSteps(15);
 
-  waitDialog.nextStep(L"Cleaning up folders...");
-  cleanupFolders(options,waitDialog);
+  waitDialog.nextStep(L"Cleaning up directories...");
+  cleanupDirectories(options,waitDialog);
 
   waitDialog.nextStep(L"Copying files...");
   copyFiles(options);

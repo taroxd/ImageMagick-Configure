@@ -62,7 +62,7 @@ private:
 
   static VisualStudioVersion getVisualStudioVersion();
   
-  static bool hasVisualStudioFolder(const wchar_t *name);
+  static bool hasVisualStudioDirectory(const wchar_t *name);
 
   set<wstring> _preBuildLibs;
 };

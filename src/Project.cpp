@@ -608,9 +608,9 @@ void Project::writeLicense() const
     wstring projectName=name();
     if (!filesystem::exists(versionFileName))
     {
-      wstring configFolder=sourceFileName.substr(0,sourceFileName.find_last_of(L"\\"));
-      versionFileName=configFolder + L"\\.ImageMagick\\ImageMagick.version.h";
-      projectName=configFolder.substr(configFolder.find_last_of(L"\\") + 1);
+      wstring configDirectory=sourceFileName.substr(0,sourceFileName.find_last_of(L"\\"));
+      versionFileName=configDirectory + L"\\.ImageMagick\\ImageMagick.version.h";
+      projectName=configDirectory.substr(configDirectory.find_last_of(L"\\") + 1);
     }
 
     wifstream versionFile(versionFileName);
