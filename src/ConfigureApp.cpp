@@ -106,7 +106,7 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
   cleanupFolders(options,waitDialog);
 
   waitDialog.nextStep(L"Copying files...");
-  cleanupFolders(options,waitDialog);
+  copyFiles(options);
 
   waitDialog.nextStep(L"Loading configuration files...");
   vector<Config> configs=Configs::load(options);
