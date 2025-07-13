@@ -123,20 +123,23 @@ void Projects::createFuzzProjects(const Options &options,vector<Config> &configs
 
 void Projects::createUtilitiesProjects(const Options &options,vector<Config> &configs,vector<Project> &projects)
 {
-  auto utilitiesConfig=find_if(configs.begin(),configs.end(),[&](const auto &config) { return (config.name() == L"utilities"); });
+  const auto utilitiesConfig=find_if(configs.begin(),configs.end(),[&](const auto &config) { return (config.name() == L"utilities"); });
   if (utilitiesConfig == configs.end())
     return;
 
-  Project utilitiesProject=Project::create(*utilitiesConfig,options);
+  const auto utilitiesProject=Project::create(*utilitiesConfig,options);
 
-  vector<wstring> aliases = { L"compare", L"composite", L"conjure", L"identify", L"mogrify", L"montage", L"stream" };
+  const auto aliases = { L"compare", L"composite", L"conjure", L"identify", L"mogrify", L"montage", L"stream" };
 
-  for (const auto& alias : aliases)
+  if (options.isImageMagick7 && !options.onlyMagick)
   {
-    if (options.isImageMagick7)
-      createUtilityProject(utilitiesProject,alias,L"magick",projects);
-    else
-      createUtilityProject(utilitiesProject,alias,alias,projects);
+    for (const auto& alias : aliases)
+    {
+      if (options.isImageMagick7)
+        createUtilityProject(utilitiesProject,alias,L"magick",projects);
+      else
+        createUtilityProject(utilitiesProject,alias,alias,projects);
+    }
   }
 
   if (options.isImageMagick7)

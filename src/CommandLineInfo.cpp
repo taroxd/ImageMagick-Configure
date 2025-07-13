@@ -56,6 +56,8 @@ void CommandLineInfo::ParseParam(const wchar_t* pszParam, BOOL bFlag, BOOL bLast
     _options->policyConfig=PolicyConfig::Limited;
   else if (_wcsicmp(pszParam, L"linkRuntime") == 0)
     _options->linkRuntime=TRUE;
+  else if (_wcsicmp(pszParam, L"onlyMagick") == 0)
+    _options->onlyMagick=TRUE;
   else if (_wcsicmp(pszParam, L"openCL") == 0)
     _options->useOpenCL=TRUE;
   else if (_wcsicmp(pszParam, L"openPolicy") == 0)

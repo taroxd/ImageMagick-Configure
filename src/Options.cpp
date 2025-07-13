@@ -23,6 +23,7 @@ Options::Options(const wstring &rootDirectory)
   isImageMagick7=TRUE;
   isStaticBuild=FALSE;
   linkRuntime=FALSE;
+  onlyMagick=FALSE;
   policyConfig=PolicyConfig::Open;
   quantumDepth=QuantumDepth::Q16;
   useHDRI=TRUE;

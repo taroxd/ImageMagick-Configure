@@ -33,6 +33,7 @@ public:
   BOOL installedSupport;
   BOOL isStaticBuild;
   BOOL linkRuntime;
+  BOOL onlyMagick;
   PolicyConfig policyConfig;
   QuantumDepth quantumDepth;
   wstring rootDirectory;
