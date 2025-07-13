@@ -48,7 +48,7 @@ BOOL ConfigureApp::InitInstance()
     Options options(getRootDirectory());
     options.checkImageMagickVersion();
 
-    CommandLineInfo info=CommandLineInfo(options);
+    CommandLineInfo info(options);
     ParseCommandLine(info);
 
     if (info.showWizard)
@@ -89,7 +89,7 @@ void ConfigureApp::cleanupDirectories(Options &options,WaitDialog &waitDialog)
 
 void ConfigureApp::copyFiles(Options &options)
 {
-  wstring binDirectory=options.rootDirectory + L"Artifacts\\bin";
+  const auto binDirectory=options.rootDirectory + L"Artifacts\\bin";
 
   if (!filesystem::exists(binDirectory))
     filesystem::create_directories(binDirectory);
@@ -141,7 +141,7 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
 
 const wstring ConfigureApp::getRootDirectory() const
 {
-  filesystem::path directory=filesystem::current_path();
+  auto directory=filesystem::current_path();
   while (directory.has_parent_path())
   {
     if (directory.filename() == L"Configure")

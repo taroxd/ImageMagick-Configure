@@ -108,7 +108,7 @@ const wstring VersionInfo::executeCommand(const wstring &command) const
   si.hStdError=hWrite;
   si.hStdInput=NULL;
 
-  wstring cmd=L"cmd.exe /C " + command;
+  auto cmd=L"cmd.exe /C " + command;
   if (!CreateProcessW(NULL,cmd.data(),NULL,NULL,TRUE,CREATE_NO_WINDOW,NULL,NULL,&si,&pi))
   {
     CloseHandle(hWrite);
@@ -164,7 +164,7 @@ const wstring VersionInfo::getFileModificationDate(const wstring &fileName,const
 
 optional<VersionInfo> VersionInfo::load(const Options& options)
 {
-  wstring versionFile = options.rootDirectory + L"ImageMagick\\m4\\version.m4";
+  const auto versionFile=options.rootDirectory + L"ImageMagick\\m4\\version.m4";
   if (!filesystem::exists(versionFile))
     return nullopt;
 
@@ -242,7 +242,7 @@ wstring VersionInfo::replaceVariable(const wstring &line,const size_t start) con
   if (end == wstring::npos)
     return(line);
 
-  wstring keyword=line.substr(start + 1,end - start - 1);
+  const auto keyword=line.substr(start + 1,end - start - 1);
   if (find(skipableKeywords.begin(), skipableKeywords.end(), keyword) != skipableKeywords.end())
     return(L"");
 
@@ -275,9 +275,9 @@ wstring VersionInfo::replaceVariable(const wstring &line,const size_t start) con
 
 wstring VersionInfo::replaceVariable(const wstring& line,const size_t start,const size_t end,const wstring &newValue) const
 {
-  wstring newLine=line.substr(0,start) + newValue + line.substr(end + 1);
+  const auto newLine=line.substr(0,start) + newValue + line.substr(end + 1);
 
-  size_t newStart=newLine.find(L"@");
+  const auto newStart=newLine.find(L"@");
   if (newStart == wstring::npos)
     return(newLine);
 
@@ -302,7 +302,7 @@ void VersionInfo::setReleaseDate()
 
 void VersionInfo::write() const
 {
-  wstring versionFile=L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h";
+  const auto versionFile=L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h";
 
   write(L"Configure\\package.version.h.in",L"Configure\\package.version.h");
   write(L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h.in",versionFile);
@@ -324,7 +324,7 @@ void VersionInfo::write(wstring inputFile,wstring outputFile) const
   wstring line;
   while (getline(input,line))
   {
-    size_t offset=line.find(L"@");
+    const auto offset=line.find(L"@");
     if (offset != wstring::npos)
     {
       line=replaceVariable(line,offset);

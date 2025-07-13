@@ -55,7 +55,7 @@ void Projects::createCoderProjects(const Options &options,vector<Config> &config
   for (const auto& project : projects)
     allNames.insert(project.name());
 
-  Project codersProject=Project::create(*codersConfig,options);
+  auto codersProject=Project::create(*codersConfig,options);
   
   if (options.isStaticBuild)
   {
@@ -86,7 +86,7 @@ void Projects::createDemoProjects(const Options &options,vector<Config> &configs
   if (demoConfig == configs.end())
     return;
 
-  Project demoProject=Project::create(*demoConfig,options);
+  const auto demoProject=Project::create(*demoConfig,options);
   for (const auto& project : demoProject.splitToFiles())
     projects.push_back(project);
 }
@@ -97,7 +97,7 @@ void Projects::createFilterProjects(const Options &options,vector<Config> &confi
   if (filtersConfig == configs.end())
     return;
 
-  Project filtersProject=Project::create(*filtersConfig,options);
+  const auto filtersProject=Project::create(*filtersConfig,options);
   
   if (options.isStaticBuild)
   {
@@ -116,7 +116,7 @@ void Projects::createFuzzProjects(const Options &options,vector<Config> &configs
   if (fuzzConfig == configs.end())
     return;
 
-  Project fuzzProject=Project::create(*fuzzConfig,options);
+  const auto fuzzProject=Project::create(*fuzzConfig,options);
   for (const auto& project : fuzzProject.splitToFiles({ L"main.cc" }))
     projects.push_back(project);
 }

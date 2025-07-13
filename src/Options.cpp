@@ -51,10 +51,10 @@ const wstring Options::architectureName() const
 {
   switch (architecture)
   {
-  case Architecture::x86: return(L"x86");
-  case Architecture::x64: return(L"x64");
-  case Architecture::Arm64: return(L"arm64");
-  default: throwException(L"Unknown architecture");
+    case Architecture::x86: return(L"x86");
+    case Architecture::x64: return(L"x64");
+    case Architecture::Arm64: return(L"arm64");
+    default: throwException(L"Unknown architecture");
   }
 }
 
@@ -73,10 +73,10 @@ const wstring Options::platform() const
 {
   switch (architecture)
   {
-  case Architecture::x86: return(L"Win32");
-  case Architecture::x64: return(L"x64");
-  case Architecture::Arm64: return(L"ARM64");
-  default: throwException(L"Unknown architecture");
+    case Architecture::x86: return(L"Win32");
+    case Architecture::x64: return(L"x64");
+    case Architecture::Arm64: return(L"ARM64");
+    default: throwException(L"Unknown architecture");
   }
 }
 
@@ -132,10 +132,7 @@ VisualStudioVersion Options::getVisualStudioVersion()
 
 bool Options::hasVisualStudioDirectory(const wchar_t *name)
 {
-  wstring
-    path;
-
-  path=getEnvironmentVariable(L"ProgramW6432") + L"\\Microsoft Visual Studio\\" + name;
+  auto path=getEnvironmentVariable(L"ProgramW6432") + L"\\Microsoft Visual Studio\\" + name;
   if (filesystem::exists(path))
     return(true);
   path=getEnvironmentVariable(L"ProgramFiles(x86)") + L"\\Microsoft Visual Studio\\" + name;

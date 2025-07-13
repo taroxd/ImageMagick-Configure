@@ -38,10 +38,10 @@ const set<wstring>& Config::excludes(const Architecture architecture) const
 {
   switch (architecture)
   {
-  case Architecture::Arm64: return(_excludesArm64);
-  case Architecture::x64: return(_excludesX64);
-  case Architecture::x86: return(_excludesX86);
-  default: throwException(L"Unknown architecture");
+    case Architecture::Arm64: return(_excludesArm64);
+    case Architecture::x64: return(_excludesX64);
+    case Architecture::x86: return(_excludesX86);
+    default: throwException(L"Unknown architecture");
   }
 }
 
@@ -49,9 +49,9 @@ const set<wstring>& Config::nasmIncludes(const Architecture architecture) const
 {
   switch (architecture)
   {
-  case Architecture::x64: return(_includesNasmX64);
-  case Architecture::x86: return(_includesNasmX86);
-  default: throwException(L"Unsupported architecture");
+    case Architecture::x64: return(_includesNasmX64);
+    case Architecture::x86: return(_includesNasmX86);
+    default: throwException(L"Unsupported architecture");
   }
 }
 
@@ -241,7 +241,7 @@ void Config::load(const wstring &configFile)
     _includesNasmX86.insert(include);
   }
 
-  const wstring resourceFileName=configFile.substr(0,configFile.find_last_of(L"\\") + 1) + L"ImageMagick.rc";
+  const auto resourceFileName=configFile.substr(0,configFile.find_last_of(L"\\") + 1) + L"ImageMagick.rc";
   if (filesystem::exists(resourceFileName))
     _resourceFileName=resourceFileName;
 }
@@ -272,7 +272,7 @@ vector<wstring> Config::readLines(wifstream &config)
 
   while (!config.eof())
   {
-    wstring line=readLine(config);
+    const auto line=readLine(config);
     if (line.empty())
       return(lines);
 

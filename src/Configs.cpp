@@ -83,17 +83,17 @@ void Configs::loadCoders(const Options &options,vector<Config> &configs)
   vector<Config>
     coders;
 
-  wstring coderDirectory=L"ImageMagick\\coders\\";
+  const auto coderDirectory=L"ImageMagick\\coders\\";
   if (!filesystem::exists(options.rootDirectory + coderDirectory))
     throwException(L"Cannot find coders directory");
 
-  wstring coderProjectsDirectory=options.rootDirectory + L"Configure\\Configs\\coders\\";
+  const auto coderProjectsDirectory=options.rootDirectory + L"Configure\\Configs\\coders\\";
   for (const auto& entry : filesystem::directory_iterator(coderProjectsDirectory))
   {
     if (!entry.is_regular_file() || !endsWith(entry.path().filename(),L".txt"))
       continue;
     
-    wstring name=entry.path().stem().wstring().substr(6);
+    auto name=entry.path().stem().wstring().substr(6);
     if (name.empty())
       name=L"coders";
     else
@@ -106,7 +106,7 @@ void Configs::loadCoders(const Options &options,vector<Config> &configs)
 
 void Configs::loadDirectory(const Options &options,const wstring directory,vector<Config> &configs) 
 {
-  wstring fullProjectDirectory=options.rootDirectory + L"\\" + directory;
+  const auto fullProjectDirectory=options.rootDirectory + L"\\" + directory;
   if (!filesystem::exists(fullProjectDirectory))
     return;
 
@@ -114,11 +114,11 @@ void Configs::loadDirectory(const Options &options,const wstring directory,vecto
   {
     if (entry.is_directory())
     {
-      wstring name=entry.path().filename().wstring();
-      wstring projectDirectory=directory + L"\\" + entry.path().filename().wstring() + L"\\";
-      wstring configFile=options.rootDirectory + L"\\" + projectDirectory + L".ImageMagick\\Config.txt";
+      const auto name=entry.path().filename().wstring();
+      const auto projectDirectory=directory + L"\\" + entry.path().filename().wstring() + L"\\";
+      const auto configFile=options.rootDirectory + L"\\" + projectDirectory + L".ImageMagick\\Config.txt";
 
-      Config config=Config::load(name,projectDirectory,configFile);
+      auto config=Config::load(name,projectDirectory,configFile);
       addConfig(config,options,configs);
     }
   }
@@ -126,7 +126,7 @@ void Configs::loadDirectory(const Options &options,const wstring directory,vecto
 
 Config Configs::loadConfig(const Options &options,const wstring &name,const wstring &directory)
 {
-  wstring projectDirectory=options.rootDirectory + L"Configure\\Configs\\" + name;
+  const auto projectDirectory=options.rootDirectory + L"Configure\\Configs\\" + name;
   if (!filesystem::exists(projectDirectory))
     throwException(L"Cannot find project directory");
 
@@ -146,7 +146,7 @@ void Configs::removeInvalidReferences(const Options &options,vector<Config> &con
     set<wstring> invalidReferences;
     for (auto& reference : config.references())
     {
-      bool found = false;
+      auto found = false;
       for (const auto& otherConfig : configs)
       {
         if (&otherConfig == &config)

@@ -47,7 +47,7 @@ const wstring Solution::solutionName(const Options &options)
 
 void Solution::write(const Options &options,const vector<Project> &projects)
 {
-  wstring solutionFileName=options.rootDirectory + solutionName(options);
+  const auto solutionFileName=options.rootDirectory + solutionName(options);
   wofstream file(solutionFileName);
   if (!file)
     throwException(L"Failed to open file: " + solutionFileName);
@@ -69,7 +69,7 @@ void Solution::write(const Options &options,const vector<Project> &projects)
 
 void Solution::writeConfigDirectory(wofstream &file,const Options& options)
 {
-  wstring binDirectory=options.rootDirectory + L"Artifacts\\bin";
+  const auto binDirectory=options.rootDirectory + L"Artifacts\\bin";
   if (!filesystem::exists(binDirectory))
     return;
 
@@ -80,7 +80,7 @@ void Solution::writeConfigDirectory(wofstream &file,const Options& options)
     if (!entry.is_regular_file())
       continue;
 
-    wstring fileName=entry.path().filename();
+    const auto fileName=entry.path().filename();
     if (!endsWith(fileName, L".xml"))
       continue;
 

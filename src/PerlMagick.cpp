@@ -31,7 +31,7 @@ void PerlMagick::configure(const Options &options)
   if (!makeFile)
     throwException(L"Unable to open Makefile.PL for writing.");
 
-  wstring libName=magickCoreLibraryName(options);
+  const auto libName=magickCoreLibraryName(options);
 
   wstring line;
   while (getline(makeFileIn,line))

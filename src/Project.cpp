@@ -175,11 +175,11 @@ const wstring Project::prefix() const
   {
   case ProjectType::Application: return(L"APP");
   case ProjectType::Coder:
-      return(_options.isStaticBuild ? L"CORE" : L"IM_MOD");
+    return(_options.isStaticBuild ? L"CORE" : L"IM_MOD");
   case ProjectType::DynamicLibrary: return(L"CORE");
   case ProjectType::Demo: return(L"DEMO");
   case ProjectType::Filter:
-      return(_options.isStaticBuild ? L"CORE" :L"FILTER");
+    return(_options.isStaticBuild ? L"CORE" :L"FILTER");
   case ProjectType::Fuzz: return(L"FUZZ");
   case ProjectType::StaticLibrary: return(L"CORE");
   default: throwException(L"Unsupported project type");
@@ -230,7 +230,7 @@ bool Project::isExcluded(const wstring fileName,set<wstring> &excludes,multiset<
 
   if (endsWith(fileName,L".h"))
   {
-    size_t lastDot=fileName.find_last_of(L'.');
+    const auto lastDot=fileName.find_last_of(L'.');
 
     if (isExcluded(fileName.substr(0,lastDot) + L".c",excludes,foundExcludes))
       return(true);
@@ -357,14 +357,14 @@ const wstring Project::targetName(bool debug) const
 
 void Project::write(const vector<Project> &allProjects) const
 {
-  const wstring vcxprojFileName=_options.rootDirectory + fileName();
+  const auto vcxprojFileName=_options.rootDirectory + fileName();
   filesystem::create_directories(filesystem::path(vcxprojFileName).parent_path());
 
   wofstream file(vcxprojFileName);
   if (!file)
     throwException(L"Failed to open file: " + vcxprojFileName);
 
-  const bool includeMasm=hasAsmfiles() && !_config.useNasm() && _options.architecture != Architecture::Arm64;
+  const auto includeMasm=hasAsmfiles() && !_config.useNasm() && _options.architecture != Architecture::Arm64;
 
   file << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << endl;
   file << "<Project DefaultTargets=\"Build\" ToolsVersion=\"4.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">" << endl;
@@ -384,6 +384,7 @@ void Project::write(const vector<Project> &allProjects) const
   writeCopyIncludes(file);
   file << "</Project>" << endl;
 }
+
 void Project::writeCompilationConfiguration(wofstream &file) const
 {
   file << "  <ItemDefinitionGroup>" << endl;
@@ -467,7 +468,7 @@ void Project::writeFiles(wofstream &file) const
   file << "  <ItemGroup>" << endl;
   for (auto& fileName : _files)
   {
-    wstring objectName=fileName.substr(fileName.find_last_of(L"\\") + 1);
+    const auto objectName=fileName.substr(fileName.find_last_of(L"\\") + 1);
 
     if (endsWith(fileName,L".h"))
       file << "    <ClInclude Include=\"$(SolutionDir)" << _config.directory() << fileName << "\" />" << endl;
@@ -539,9 +540,9 @@ void Project::writeFilters() const
     if (slashIndex == wstring::npos)
       continue;
 
-    wstring directory=fileName.substr(0,slashIndex);
+    const auto directory=fileName.substr(0,slashIndex);
     directories.insert(directory);
-    wstring parentDirectory=directory;
+    auto parentDirectory=directory;
     while (slashIndex != wstring::npos)
     {
       parentDirectory=parentDirectory.substr(0,slashIndex);
@@ -549,7 +550,7 @@ void Project::writeFilters() const
       slashIndex=parentDirectory.find_last_of(L"\\");
     }
 
-    wstring tag=L"ClCompile";
+    auto tag=L"ClCompile";
 
     if (endsWith(fileName, L".h"))
     {
@@ -593,22 +594,22 @@ void Project::writeLicense() const
   if (_config.licenses().empty())
     return;
 
-  wstring targetDirectory=_options.rootDirectory + L"Artifacts\\license\\";
+  const auto targetDirectory=_options.rootDirectory + L"Artifacts\\license\\";
   filesystem::create_directories(targetDirectory);
 
   wofstream licenseFile(targetDirectory + name() + L".txt");
   for (const auto& license : _config.licenses())
   {
-    wstring sourceFileName=_options.rootDirectory + _config.directory() + license;
+    const auto sourceFileName=_options.rootDirectory + _config.directory() + license;
     wifstream sourceLicenseFile(sourceFileName);
     if (!sourceLicenseFile)
       throwException(L"Failed to open license file: " + sourceFileName);
 
-    wstring versionFileName=_options.rootDirectory + _config.directory() + L".ImageMagick\\ImageMagick.version.h";
-    wstring projectName=name();
+    auto versionFileName=_options.rootDirectory + _config.directory() + L".ImageMagick\\ImageMagick.version.h";
+    auto projectName=name();
     if (!filesystem::exists(versionFileName))
     {
-      wstring configDirectory=sourceFileName.substr(0,sourceFileName.find_last_of(L"\\"));
+      const auto configDirectory=sourceFileName.substr(0,sourceFileName.find_last_of(L"\\"));
       versionFileName=configDirectory + L"\\.ImageMagick\\ImageMagick.version.h";
       projectName=configDirectory.substr(configDirectory.find_last_of(L"\\") + 1);
     }
@@ -665,13 +666,13 @@ void Project::writeMagickBaseconfigDefine() const
   if (_config.magickBaseconfigDefine().empty())
     return;
 
-  wstring targetDirectory=_options.rootDirectory + L"Artifacts\\config\\";
+  const auto targetDirectory=_options.rootDirectory + L"Artifacts\\config\\";
   filesystem::create_directories(targetDirectory);
 
-  wstring configFileName=targetDirectory + name() + L".h";
+  const auto configFileName=targetDirectory + name() + L".h";
   wofstream configFile(configFileName);
-    if (!configFile)
-      throwException(L"Failed to open license file: " + configFileName);
+  if (!configFile)
+    throwException(L"Failed to open license file: " + configFileName);
 
   configFile << _config.magickBaseconfigDefine();
 }

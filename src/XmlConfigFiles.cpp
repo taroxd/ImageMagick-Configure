@@ -33,8 +33,8 @@ const wstring XmlConfigFiles::getPolicyFileName(const Options &options)
 
 void XmlConfigFiles::write(const Options &options)
 {
-  const wstring configDirectory=options.rootDirectory + L"ImageMagick\\config\\";
-  const wstring targetDirectory=options.rootDirectory + L"Artifacts\\bin\\";
+  const auto configDirectory=options.rootDirectory + L"ImageMagick\\config\\";
+  const auto targetDirectory=options.rootDirectory + L"Artifacts\\bin\\";
 
   filesystem::copy_file(configDirectory + getPolicyFileName(options),targetDirectory + L"policy.xml",filesystem::copy_options::overwrite_existing);
 
