@@ -17,15 +17,15 @@
 #endif
 
 ; Configuration files
-Source: "..\..\Artifacts\bin\colors.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\configure.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\english.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\delegates.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\locale.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\log.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\mime.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\policy.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\sRGB.icc"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\thresholds.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\type.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
-Source: "..\..\Artifacts\bin\type-ghostscript.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\colors.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\configure.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\english.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\delegates.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\locale.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\log.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\mime.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\policy.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\sRGB.icc"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\thresholds.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\type.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
+Source: "{#RootDirectory}Artifacts\bin\type-ghostscript.xml"; DestDir: {#MagickConfigDirectory}; Flags: confirmoverwrite
