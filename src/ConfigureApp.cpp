@@ -161,11 +161,11 @@ void ConfigureApp::writeImageMagickFiles(const Options &options,const VersionInf
   waitDialog.nextStep(L"Writing magick-base-config.h...");
   MagickBaseConfig::write(options);
 
-  waitDialog.nextStep(L"Writing threshold map...");
-  ThresholdMap::write(options);
-
   waitDialog.nextStep(L"Writing xml config files...");
   XmlConfigFiles::write(options);
+
+  waitDialog.nextStep(L"Writing threshold map...");
+  ThresholdMap::write(options);
 
   waitDialog.nextStep(L"Writing PerlMagick configuration...");
   PerlMagick::configure(options);
