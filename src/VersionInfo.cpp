@@ -304,11 +304,11 @@ void VersionInfo::write() const
 {
   const auto versionFile=L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h";
 
-  write(L"Configure\\Configs\\package.version.h.in",L"Configure\\Configs\\package.version.h");
   write(L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h.in",versionFile);
   write(L"ImageMagick\\config\\configure.xml.in",L"Artifacts\\bin\\configure.xml");
 
-  filesystem::copy(_options.rootDirectory + versionFile,_options.rootDirectory + L"Configure\\version.h",filesystem::copy_options::overwrite_existing);
+  write(L"Configure\\Configs\\package.version.h.in",L"Configure\\Configs\\package.version.h");
+  filesystem::copy(_options.rootDirectory + versionFile,_options.rootDirectory + L"Configure\\Configs\\version.h",filesystem::copy_options::overwrite_existing);
 }
 
 void VersionInfo::write(wstring inputFile,wstring outputFile) const
