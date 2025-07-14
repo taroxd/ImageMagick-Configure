@@ -22,7 +22,7 @@
 Project::Project(const Config &config,const Options &options)
   : _config(config),
     _options(options)
-{  
+{
 }
 
 const wstring Project::characterSet() const
@@ -287,7 +287,7 @@ void Project::loadFiles(const wstring directory,set<wstring> &excludes,multiset<
       loadFiles(name,excludes,foundExcludes);
       continue;
     }
-  
+
     static const set<wstring>
       validExtensions = { L".asm", L".c", L".cc", L".cpp", L".h" };
 
@@ -477,7 +477,7 @@ void Project::writeFiles(wofstream &file) const
       if (_config.useNasm())
       {
         file << "    <CustomBuild Include=\"$(SolutionDir)" << _config.directory() << fileName << "\">" << endl;
-        file << "      <Command>$(SolutionDir)Configure\\nasm.exe" << nasmOptions() << "</Command>" << endl;
+        file << "      <Command>$(SolutionDir)Configure\\Tools\\nasm.exe" << nasmOptions() << "</Command>" << endl;
         if (fileNameCount[objectName]++ == 0)
           file << "      <Outputs>$(IntDir)%(Filename).obj;%(Outputs)</Outputs>" << endl;
         else
@@ -528,7 +528,7 @@ void Project::writeFilters() const
   wofstream file(filterFileName);
   if (!file)
     throwException(L"Failed to open file: " + filterFileName);
-  
+
   set<wstring> directories;
   file << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << endl;
   file << "<Project ToolsVersion=\"4.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">" << endl;
@@ -563,7 +563,7 @@ void Project::writeFilters() const
       else
         tag = L"MASM";
     }
-    
+
     file << "    <" << tag << " Include=\"$(SolutionDir)" << _config.directory() << fileName << "\">" << endl;
     file << "      <Filter>" << directory << "</Filter>" << endl;
     file << "    </" << tag << ">" << endl;

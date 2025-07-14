@@ -69,7 +69,7 @@ jobs:
     - name: Create Configs archive
       shell: cmd
       run: |
-        powershell -Command "Compress-Archive -Path 'ColorProfiles','Configs','Installer','OpenCL','PerlMagick','nasm.exe' -DestinationPath 'files.zip'"
+        powershell -Command "Compress-Archive -Path 'ColorProfiles','Configs','Installer','OpenCL','PerlMagick','Tools' -DestinationPath 'files.zip'"
 
     - name: Set release number
       shell: bash
