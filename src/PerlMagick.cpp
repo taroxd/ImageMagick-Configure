@@ -31,18 +31,11 @@ void PerlMagick::configure(const Options &options)
   if (!makeFile)
     throwException(L"Unable to open Makefile.PL for writing.");
 
-  const auto libName=magickCoreLibraryName(options);
-
   wstring line;
   while (getline(makeFileIn,line))
   {
-    line=replace(line,L"$$LIB_NAME$$",libName);
+    line=replace(line,L"$$LIB_NAME$$",L"CORE_RL_" + options.magickCoreName() + L"_");
     line=replace(line,L"$$PLATFORM$$",options.architectureName());
     makeFile << line << endl;
   }
-}
-
-wstring PerlMagick::magickCoreLibraryName(const Options &options)
-{
-  return(L"CORE_RL_" + options.magickCoreName());
 }

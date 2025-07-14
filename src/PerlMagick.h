@@ -26,7 +26,4 @@ class PerlMagick
 {
 public:
   static void configure(const Options &options);
-
-private:
-  static wstring magickCoreLibraryName(const Options &options);
 };
