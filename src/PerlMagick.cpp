@@ -44,5 +44,5 @@ void PerlMagick::configure(const Options &options)
 
 wstring PerlMagick::magickCoreLibraryName(const Options &options)
 {
-  return(L"CORE_RL_" + options.magickCoreName() + L"_.a");
+  return(L"CORE_RL_" + options.magickCoreName());
 }
