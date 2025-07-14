@@ -62,9 +62,9 @@ const wstring VersionInfo::quantumDepthBits() const
   switch (_options.quantumDepth)
   {
     case QuantumDepth::Q8: return(L"8");
-    case QuantumDepth::Q16: return(L"16"); 
-    case QuantumDepth::Q32: return(L"32"); 
-    case QuantumDepth::Q64: return(L"64"); 
+    case QuantumDepth::Q16: return(L"16");
+    case QuantumDepth::Q32: return(L"32");
+    case QuantumDepth::Q64: return(L"64");
     default: throw;
   }
 }
@@ -136,7 +136,7 @@ const wstring VersionInfo::executeCommand(const wstring &command) const
 
   CloseHandle(pi.hProcess);
   CloseHandle(pi.hThread);
-  
+
   if (exitCode != 0)
     return L"";
 
@@ -304,7 +304,7 @@ void VersionInfo::write() const
 {
   const auto versionFile=L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h";
 
-  write(L"Configure\\package.version.h.in",L"Configure\\package.version.h");
+  write(L"Configure\\Configs\\package.version.h.in",L"Configure\\Configs\\package.version.h");
   write(L"ImageMagick\\" + _options.magickCoreName() + L"\\version.h.in",versionFile);
   write(L"ImageMagick\\config\\configure.xml.in",L"Artifacts\\bin\\configure.xml");
 
@@ -320,7 +320,7 @@ void VersionInfo::write(wstring inputFile,wstring outputFile) const
   wofstream output(_options.rootDirectory + outputFile);
   if (!output)
     throwException(L"Unable to open: " + outputFile);
-  
+
   wstring line;
   while (getline(input,line))
   {
