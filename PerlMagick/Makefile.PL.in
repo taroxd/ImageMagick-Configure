@@ -1,8 +1,10 @@
-# Copyright (C) 1999-2015 ImageMagick Studio LLC
+#  Copyright @ 1999 ImageMagick Studio LLC, a non-profit organization
+#  dedicated to making software imaging solutions freely available.
 #
-# This program is covered by multiple licenses, which are described in
-# LICENSE.  You should have received a copy of LICENSE with this
-# package; otherwise see http://www.imagemagick.org/script/license.php.
+#  You may not use this file except in compliance with the License.  You may
+#  obtain a copy of the License at
+#
+#  https://www.imagemagick.org/script/license.php
 #
 #  Makefile for building PerlMagick under Windows
 #
@@ -38,7 +40,7 @@ WriteMakefile(
   'AUTHOR'           => 'ImageMagick Studio',
   'NAME'             => 'Image::Magick',
   'VERSION_FROM'     => 'Magick.pm',
-  'LIBS'             => ['-L. -l$$LIB_NAME$$'],
+  'LIBS'             => ['-L../../Artifacts/lib -l$$LIB_NAME$$'],
   'DEFINE'           => '-D_VISUALC_ -D_WINDOWS',
   'INC'              => '-I..',
   'BINARY_LOCATION'  => '$$PLATFORM$$\Image-Magick.zip',
