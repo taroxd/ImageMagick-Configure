@@ -120,8 +120,6 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
   {
     waitDialog.nextStep(L"Copying files...");
     copyFiles(options);
-
-    writeImageMagickFiles(options,*versionInfo,waitDialog);
   }
 
   waitDialog.nextStep(L"Loading configuration files...");
@@ -135,6 +133,9 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
 
   waitDialog.nextStep(L"Writing solution files...");
   Solution::write(options,projects);
+
+  if (versionInfo)
+    writeImageMagickFiles(options,*versionInfo,waitDialog);
 
   return(TRUE);
 }
