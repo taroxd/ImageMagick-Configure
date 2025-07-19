@@ -33,11 +33,11 @@ private:
 
   static void loadCoders(const Options &options,vector<Config> &configs);
 
-  static void loadDirectory(const Options &options,const wstring directory,vector<Config> &configs);
-
   static Config loadConfig(const Options &options,const wstring &name,const wstring &directory);
 
   static void loadConfig(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs);
+
+  static void loadDirectory(const Options &options,const wstring directory,vector<Config> &configs);
 
   static void removeInvalidReferences(const Options &options,vector<Config> &configs);
 

@@ -104,6 +104,21 @@ void Configs::loadCoders(const Options &options,vector<Config> &configs)
   }
 }
 
+Config Configs::loadConfig(const Options &options,const wstring &name,const wstring &directory)
+{
+  const auto projectDirectory=options.rootDirectory + L"Configure\\Configs\\" + name;
+  if (!filesystem::exists(projectDirectory))
+    throwException(L"Cannot find project directory");
+
+  return(Config::load(name,directory + L"\\",projectDirectory + L"\\Config.txt"));
+}
+
+void Configs::loadConfig(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs)
+{
+  Config config=loadConfig(options,name,directory);
+  addConfig(config,options,configs);
+}
+
 void Configs::loadDirectory(const Options &options,const wstring directory,vector<Config> &configs) 
 {
   const auto fullProjectDirectory=options.rootDirectory + L"\\" + directory;
@@ -122,21 +137,6 @@ void Configs::loadDirectory(const Options &options,const wstring directory,vecto
       addConfig(config,options,configs);
     }
   }
-}
-
-Config Configs::loadConfig(const Options &options,const wstring &name,const wstring &directory)
-{
-  const auto projectDirectory=options.rootDirectory + L"Configure\\Configs\\" + name;
-  if (!filesystem::exists(projectDirectory))
-    throwException(L"Cannot find project directory");
-
-  return(Config::load(name,directory + L"\\",projectDirectory + L"\\Config.txt"));
-}
-
-void Configs::loadConfig(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs)
-{
-  Config config=loadConfig(options,name,directory);
-  addConfig(config,options,configs);
 }
 
 void Configs::removeInvalidReferences(const Options &options,vector<Config> &configs)
