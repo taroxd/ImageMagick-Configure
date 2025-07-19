@@ -1,4 +1,5 @@
 /Artifacts/*
+config.isx
 .vs
 *.h
 *.user
