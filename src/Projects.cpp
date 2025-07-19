@@ -131,15 +131,16 @@ void Projects::createUtilitiesProjects(const Options &options,vector<Config> &co
 
   const auto aliases = { L"compare", L"composite", L"conjure", L"identify", L"mogrify", L"montage", L"stream" };
 
-  if (options.isImageMagick7 && !options.onlyMagick)
+
+  for (const auto& alias : aliases)
   {
-    for (const auto& alias : aliases)
+    if (options.isImageMagick7)
     {
-      if (options.isImageMagick7)
+      if (!options.onlyMagick)
         createUtilityProject(utilitiesProject,alias,L"magick",projects);
-      else
-        createUtilityProject(utilitiesProject,alias,alias,projects);
     }
+    else
+      createUtilityProject(utilitiesProject,alias,alias,projects);
   }
 
   if (options.isImageMagick7)
