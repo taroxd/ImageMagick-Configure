@@ -25,7 +25,7 @@ void MagickBaseConfig::write(const Options &options)
   if (!configIn)
     throwException(L"Unable to open magick-baseconfig.h.in");
 
-  const auto directory=options.rootDirectory + L"\\ImageMagick\\" + options.magickCoreName();
+  const auto directory=options.rootDirectory + L"ImageMagick\\" + options.magickCoreName();
   wofstream configOut(directory + L"\\magick-baseconfig.h");
   if (!configOut)
     throwException(L"Unable to open magick-baseconfig.h");
