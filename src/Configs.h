@@ -39,6 +39,8 @@ private:
 
   static void loadDirectory(const Options &options,const wstring directory,vector<Config> &configs);
 
+  static void loadImageMagick(const Options &options,vector<Config> &configs);
+
   static void removeInvalidReferences(const Options &options,vector<Config> &configs);
 
   static void validate(const Options &options,const vector<Config> &configs);

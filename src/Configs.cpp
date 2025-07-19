@@ -44,34 +44,7 @@ vector<Config> Configs::load(const Options &options)
   loadDirectory(options,L"Dependencies",configs);
   loadDirectory(options,L"OptionalDependencies",configs);
 
-  if (filesystem::exists(options.rootDirectory + L"ImageMagick"))
-  {
-    if (options.isImageMagick7)
-    {
-      loadConfig(options,L"MagickCore",L"ImageMagick\\MagickCore",configs);
-      loadConfig(options,L"MagickWand",L"ImageMagick\\MagickWand",configs);
-      loadConfig(options,L"oss-fuzz",L"ImageMagick\\oss-fuzz",configs);
-    }
-    else
-    {
-      loadConfig(options,L"MagickCore",L"ImageMagick\\magick",configs);
-      loadConfig(options,L"wand",L"ImageMagick\\wand",configs);
-    }
-
-    loadCoders(options,configs);
-    loadConfig(options,L"Magick++",L"ImageMagick\\Magick++",configs);
-    loadConfig(options,L"demos",L"ImageMagick\\Magick++\\demo",configs);
-    loadConfig(options,L"filters",L"ImageMagick\\filters",configs);
-    loadConfig(options,L"utilities",L"ImageMagick\\utilities",configs);
-    loadDirectory(options,L"OptionalApplications",configs);
-  }
-
-  if (!options.isImageMagick7)
-  {
-    for (auto& config : configs)
-      config.updateForImageMagick6();
-  }
-
+  loadImageMagick(options,configs);
   removeInvalidReferences(options,configs);
   validate(options,configs);
 
@@ -136,6 +109,37 @@ void Configs::loadDirectory(const Options &options,const wstring directory,vecto
       auto config=Config::load(name,projectDirectory,configFile);
       addConfig(config,options,configs);
     }
+  }
+}
+
+void Configs::loadImageMagick(const Options &options,vector<Config> &configs)
+{
+  if (!filesystem::exists(options.rootDirectory + L"ImageMagick"))
+    return;
+
+  if (options.isImageMagick7)
+  {
+    loadConfig(options,L"MagickCore",L"ImageMagick\\MagickCore",configs);
+    loadConfig(options,L"MagickWand",L"ImageMagick\\MagickWand",configs);
+    loadConfig(options,L"oss-fuzz",L"ImageMagick\\oss-fuzz",configs);
+  }
+  else
+  {
+    loadConfig(options,L"MagickCore",L"ImageMagick\\magick",configs);
+    loadConfig(options,L"wand",L"ImageMagick\\wand",configs);
+  }
+
+  loadCoders(options,configs);
+  loadConfig(options,L"Magick++",L"ImageMagick\\Magick++",configs);
+  loadConfig(options,L"demos",L"ImageMagick\\Magick++\\demo",configs);
+  loadConfig(options,L"filters",L"ImageMagick\\filters",configs);
+  loadConfig(options,L"utilities",L"ImageMagick\\utilities",configs);
+  loadDirectory(options,L"OptionalApplications",configs);
+
+  if (!options.isImageMagick7)
+  {
+    for (auto& config : configs)
+      config.updateForImageMagick6();
   }
 }
 
