@@ -124,6 +124,12 @@ const Config Config::copyInfo(const Config &config) const
   return(newConfig);
 }
 
+void Config::correctDirectory()
+{
+  if (startsWith(_directory,L"Dependencies\\"))
+    _directory=L"Dependencies\\" + _directory;
+}
+
 Config Config::load(const wstring name,const wstring &directory,const wstring &configFile)
 {
   Config config(name,directory);

@@ -36,14 +36,18 @@ void Configs::addConfig(Config &config,const Options &options,vector<Config> &co
   configs.push_back(config);
 }
 
+void Configs::correctDirectories(vector<Config> &configs)
+{
+  for(auto& config : configs)
+    config.correctDirectory();
+}
+
 vector<Config> Configs::load(const Options &options)
 {
   vector<Config>
     configs;
 
-  loadDirectory(options,L"Dependencies",configs);
-  loadDirectory(options,L"OptionalDependencies",configs);
-
+  loadDependencies(options,configs);
   loadImageMagick(options,configs);
   removeInvalidReferences(options,configs);
   validate(options,configs);
@@ -90,6 +94,24 @@ void Configs::loadConfig(const Options &options,const wstring &name,const wstrin
 {
   Config config=loadConfig(options,name,directory);
   addConfig(config,options,configs);
+}
+
+void Configs::loadDependencies(const Options &options,vector<Config> &configs)
+{
+  if (!filesystem::exists(options.rootDirectory + L"Dependencies"))
+    return;
+
+  if (filesystem::exists(options.rootDirectory + L"Dependencies\\Dependencies"))
+  {
+    loadDirectory(options,L"Dependencies\\Dependencies",configs);
+    loadDirectory(options,L"Dependencies\\OptionalDependencies",configs);
+    correctDirectories(configs);
+  }
+  else
+  {
+    loadDirectory(options,L"Dependencies",configs);
+    loadDirectory(options,L"OptionalDependencies",configs);
+  }
 }
 
 void Configs::loadDirectory(const Options &options,const wstring directory,vector<Config> &configs) 

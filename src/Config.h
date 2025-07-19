@@ -75,6 +75,8 @@ public:
 
   const Config copyInfo(const Config &config) const;
 
+  void correctDirectory();
+
   static Config load(const wstring name,const wstring &directory,const wstring &configFile);
 
   void rename(const wstring& name);

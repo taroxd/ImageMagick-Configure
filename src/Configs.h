@@ -31,11 +31,15 @@ public:
 private:
   static void addConfig(Config &config,const Options &options,vector<Config> &configs);
 
+  static void correctDirectories(vector<Config> &configs);
+
   static void loadCoders(const Options &options,vector<Config> &configs);
 
   static Config loadConfig(const Options &options,const wstring &name,const wstring &directory);
 
   static void loadConfig(const Options &options,const wstring &name,const wstring &directory,vector<Config> &configs);
+
+  static void loadDependencies(const Options &options,vector<Config> &configs);
 
   static void loadDirectory(const Options &options,const wstring directory,vector<Config> &configs);
 
