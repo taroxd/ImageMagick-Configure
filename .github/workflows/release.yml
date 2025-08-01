@@ -85,4 +85,6 @@ jobs:
 
     - name: Publish release
       shell: bash
+      env:
+        GH_TOKEN: ${{github.token}}
       run: gh release create ${{env.release}} --title "Release ${{env.release}}"  ${{github.workspace}}/Artifacts/Configure.Release.x64.exe ${{github.workspace}}/Artifacts/Configure.Release.arm64.exe ${{github.workspace}}/Artifacts/Configure.Release.x86.exe ${{github.workspace}}/files.zip
