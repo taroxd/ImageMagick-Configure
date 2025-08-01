@@ -6,7 +6,7 @@ on:
 name: main
 jobs:
   build:
-    name: Build (${{ matrix.architecture }}, ${{ matrix.configuration }})
+    name: Build (${{matrix.architecture}}, ${{matrix.configuration}})
     runs-on: windows-2022
 
     strategy:
