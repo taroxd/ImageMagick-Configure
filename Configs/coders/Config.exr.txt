@@ -5,3 +5,4 @@ OPENEXR_DLL
 
 [REFERENCES]
 exr
+imath
