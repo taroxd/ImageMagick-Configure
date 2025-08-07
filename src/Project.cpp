@@ -18,6 +18,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
 #include "Project.h"
+#include "License.h"
 
 Project::Project(const Config &config,const Options &options)
   : _config(config),
@@ -594,45 +595,7 @@ void Project::writeLicense() const
   if (_config.licenses().empty())
     return;
 
-  const auto targetDirectory=_options.rootDirectory + L"Artifacts\\license\\";
-  filesystem::create_directories(targetDirectory);
-
-  wofstream licenseFile(targetDirectory + name() + L".txt");
-  for (const auto& license : _config.licenses())
-  {
-    const auto sourceFileName=_options.rootDirectory + _config.directory() + license;
-    wifstream sourceLicenseFile(sourceFileName);
-    if (!sourceLicenseFile)
-      throwException(L"Failed to open license file: " + sourceFileName);
-
-    auto versionFileName=_options.rootDirectory + _config.directory() + L".ImageMagick\\ImageMagick.version.h";
-    auto projectName=name();
-    if (!filesystem::exists(versionFileName))
-    {
-      const auto configDirectory=sourceFileName.substr(0,sourceFileName.find_last_of(L"\\"));
-      versionFileName=configDirectory + L"\\.ImageMagick\\ImageMagick.version.h";
-      projectName=configDirectory.substr(configDirectory.find_last_of(L"\\") + 1);
-    }
-
-    wifstream versionFile(versionFileName);
-    if (versionFile)
-    {
-      wstring
-        line;
-
-      getline(versionFile,line);
-      getline(versionFile,line);
-      if (!startsWith(line,L"#define DELEGATE_VERSION_STRING "))
-        throwException(L"Invalid version file: " + versionFileName);
-      line=line.substr(33,line.length() - 34);
-      licenseFile << L"[ " << projectName << L" " << line << L" ]" << endl << endl;
-    }
-    else
-    {
-      licenseFile << L"[ " << projectName << L" ]" << endl << endl;
-    }
-    licenseFile << sourceLicenseFile.rdbuf() << endl;
-  }
+  License::write(_options,_config,name());
 }
 
 void Project::writeLinkProperties(wofstream& file) const

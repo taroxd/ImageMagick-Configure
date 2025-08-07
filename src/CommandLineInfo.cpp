@@ -42,6 +42,8 @@ void CommandLineInfo::ParseParam(const wchar_t* pszParam, BOOL bFlag, BOOL bLast
      _options->includeIncompatibleLicense=TRUE;
   else if (_wcsicmp(pszParam, L"includeOptional") == 0)
     _options->includeOptional=TRUE;
+  else if (_wcsicmp(pszParam, L"includeNonWindows") == 0)
+    _options->includeNonWindows=TRUE;
   else if (_wcsicmp(pszParam, L"installedSupport") == 0)
     _options->installedSupport=TRUE;
   else if (_wcsicmp(pszParam, L"noDpc") == 0)

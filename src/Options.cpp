@@ -19,6 +19,7 @@ Options::Options(const wstring &rootDirectory)
   includeIncompatibleLicense=FALSE;
   includeOptional=FALSE;
 #endif
+  includeNonWindows=FALSE;
   installedSupport=FALSE;
   isImageMagick7=TRUE;
   isStaticBuild=FALSE;

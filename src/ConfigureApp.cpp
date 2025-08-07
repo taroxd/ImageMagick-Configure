@@ -23,6 +23,7 @@
 #include "ConfigureWizard.h"
 #include "CommandLineInfo.h"
 #include "InstallerConfig.h"
+#include "License.h"
 #include "MagickBaseConfig.h"
 #include "Notice.h"
 #include "Options.h"
@@ -109,7 +110,7 @@ void ConfigureApp::copyFiles(const wstring &sourceDirectory,const wstring &targe
 
 BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
 {
-  waitDialog.setSteps(15);
+  waitDialog.setSteps(16);
 
   waitDialog.nextStep(L"Cleaning up directories...");
   cleanupDirectories(options,waitDialog);
@@ -133,6 +134,12 @@ BOOL ConfigureApp::createFiles(Options &options,WaitDialog &waitDialog) const
 
   waitDialog.nextStep(L"Writing solution files...");
   Solution::write(options,projects);
+
+  if (options.includeNonWindows)
+  {
+    waitDialog.nextStep(L"Writing non windows licenses...");
+    License::writeNonWindowsLicenses(options);
+  }
 
   if (versionInfo)
     writeImageMagickFiles(options,*versionInfo,waitDialog);

@@ -20,51 +20,13 @@
 #pragma once
 #include "stdafx.h"
 
-class Options
+#include "Config.h"
+#include "Options.h"
+
+class License
 {
 public:
-  Options(const wstring &rootDirectory);
+  static void write(const Options &options,const Config &config,const wstring name);
 
-  Architecture architecture;
-  BOOL enableDpc;
-  BOOL excludeDeprecated;
-  BOOL includeIncompatibleLicense;
-  BOOL includeNonWindows;
-  BOOL includeOptional;
-  BOOL installedSupport;
-  BOOL isStaticBuild;
-  BOOL linkRuntime;
-  BOOL onlyMagick;
-  PolicyConfig policyConfig;
-  QuantumDepth quantumDepth;
-  wstring rootDirectory;
-  BOOL useHDRI;
-  BOOL useOpenCL;
-  BOOL useOpenMP;
-  bool isImageMagick7;
-  VisualStudioVersion visualStudioVersion;
-  BOOL zeroConfigurationSupport;
-
-  const wstring architectureName() const;
-
-  const set<wstring>& preBuildLibs() const { return(_preBuildLibs); };
-
-  const wstring channelMaskDepth() const;
-
-  const wstring magickCoreName() const { return(isImageMagick7 ? L"MagickCore" : L"magick"); };
-
-  const wstring platform() const;
-
-  const wstring projectsDirectory() const;
-
-  void checkImageMagickVersion();
-
-private:
-  static wstring getEnvironmentVariable(const wchar_t *name);
-
-  static VisualStudioVersion getVisualStudioVersion();
-  
-  static bool hasVisualStudioDirectory(const wchar_t *name);
-
-  set<wstring> _preBuildLibs;
+  static void writeNonWindowsLicenses(const Options &options);
 };
