@@ -25,7 +25,6 @@ void License::write(const Options &options,const Config &config,const wstring na
   const auto targetDirectory=options.rootDirectory + L"Artifacts\\license\\";
   filesystem::create_directories(targetDirectory);
 
-  wofstream licenseFile(targetDirectory + name + L".txt");
   for (const auto& license : config.licenses())
   {
     const auto sourceFileName=options.rootDirectory + config.directory() + license;
@@ -33,15 +32,16 @@ void License::write(const Options &options,const Config &config,const wstring na
     if (!sourceLicenseFile)
       throwException(L"Failed to open license file: " + sourceFileName);
 
-    auto versionFileName=options.rootDirectory + config.directory() + L".ImageMagick\\ImageMagick.version.h";
-    auto projectName=name;
+    const auto path=filesystem::path(sourceFileName).parent_path();
+    auto versionFileName=path.wstring() + L"\\.ImageMagick\\ImageMagick.version.h";
+    auto projectName=path.filename().wstring();
     if (!filesystem::exists(versionFileName))
     {
-      const auto configDirectory=sourceFileName.substr(0,sourceFileName.find_last_of(L"\\"));
-      versionFileName=configDirectory + L"\\.ImageMagick\\ImageMagick.version.h";
-      projectName=configDirectory.substr(configDirectory.find_last_of(L"\\") + 1);
+      versionFileName=options.rootDirectory + config.directory() + L".ImageMagick\\ImageMagick.version.h";
+      projectName=name;
     }
 
+    wofstream licenseFile(targetDirectory + projectName + L".txt");
     wifstream versionFile(versionFileName);
     if (versionFile)
     {
