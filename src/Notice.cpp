@@ -26,7 +26,7 @@ void Notice::write(const Options &options,const VersionInfo &versionInfo)
   if (!notice)
     throwException(L"Unable to open NOTICE.txt");
 
-  notice << "[ Imagemagick " << versionInfo.version() << versionInfo.libAddendum() << " (" << versionInfo.releaseDate() << ") ]" << endl << endl;
+  notice << "[ ImageMagick " << versionInfo.version() << versionInfo.libAddendum() << " (" << versionInfo.releaseDate() << ") ]" << endl << endl;
   notice << readLicense(options.rootDirectory + L"ImageMagick\\LICENSE") << endl << endl;
 
   wstring licensesDirectory=options.rootDirectory + L"Artifacts\\license\\";
