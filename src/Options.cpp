@@ -16,22 +16,22 @@ Options::Options(const wstring &rootDirectory)
   includeIncompatibleLicense=TRUE;
   includeOptional=TRUE;
 #else
-  includeIncompatibleLicense=FALSE;
-  includeOptional=FALSE;
+  includeIncompatibleLicense=TRUE;
+  includeOptional=TRUE;
 #endif
   includeNonWindows=FALSE;
   installedSupport=FALSE;
   isImageMagick7=TRUE;
-  isStaticBuild=FALSE;
+  isStaticBuild=TRUE;
   linkRuntime=FALSE;
-  onlyMagick=FALSE;
+  onlyMagick=TRUE;
   policyConfig=PolicyConfig::Open;
   quantumDepth=QuantumDepth::Q16;
   useHDRI=TRUE;
   useOpenCL=TRUE;
-  useOpenMP=TRUE;
+  useOpenMP=FALSE;
   visualStudioVersion=getVisualStudioVersion();
-  zeroConfigurationSupport=FALSE;
+  zeroConfigurationSupport=TRUE;
 
   wifstream preBuildFile(rootDirectory + L"Artifacts\\pre-build-libs.txt");
   if (preBuildFile)
